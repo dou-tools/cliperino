@@ -7,12 +7,13 @@ using Cliperino.Core;
 
 namespace Cliperino.Update;
 
-public sealed record UpdateInfo(Version Version, string Tag, string DownloadUrl, string PageUrl, string? Notes);
+public sealed record UpdateInfo(Version Version, string Tag, string DownloadUrl, string Sha256, string PageUrl, string? Notes);
 
 public static class Updater
 {
     const string LatestReleaseUrl = "https://api.github.com/repos/dou-tools/cliperino/releases/latest";
     const string AssetName = "Cliperino.exe";
+    const string DigestPrefix = "sha256:";
     const string AfterUpdateArgument = "--after-update";
     const string OldSuffix = ".old";
     const string DownloadSuffix = ".download";
@@ -30,7 +31,8 @@ public static class Updater
 
     sealed record Asset(
         [property: JsonPropertyName("name")] string Name,
-        [property: JsonPropertyName("browser_download_url")] string DownloadUrl);
+        [property: JsonPropertyName("browser_download_url")] string DownloadUrl,
+        [property: JsonPropertyName("digest")] string? Digest);
 
     public static Version CurrentVersion { get; } = Normalize(typeof(Updater).Assembly.GetName().Version ?? new Version(0, 0));
 
@@ -57,7 +59,8 @@ public static class Updater
         var release = await JsonSerializer.DeserializeAsync<Release>(stream);
         if (release == null || !TryParseTag(release.TagName, out var version) || version <= current) return null;
         var asset = release.Assets?.FirstOrDefault(a => string.Equals(a.Name, AssetName, StringComparison.OrdinalIgnoreCase));
-        return asset == null ? null : new UpdateInfo(version, release.TagName, asset.DownloadUrl, release.HtmlUrl, NotesFor(release.Body, English));
+        if (asset?.Digest == null || !asset.Digest.StartsWith(DigestPrefix, StringComparison.OrdinalIgnoreCase)) return null;
+        return new UpdateInfo(version, release.TagName, asset.DownloadUrl, asset.Digest[DigestPrefix.Length..], release.HtmlUrl, NotesFor(release.Body, English));
     }
 
     public static string? NotesFor(string? body, bool english)
@@ -86,7 +89,7 @@ public static class Updater
         var current = Environment.ProcessPath ?? throw new InvalidOperationException(T("No se encontró el ejecutable actual.", "Couldn't find the current executable."));
         var downloaded = current + DownloadSuffix;
         var old = current + OldSuffix;
-        await Downloader.DownloadAsync(update.DownloadUrl, downloaded, T($"Descargando {update.Tag}", $"Downloading {update.Tag}"), progress, cancellation);
+        await Downloader.DownloadAsync(update.DownloadUrl, update.Sha256, downloaded,T($"Descargando {update.Tag}", $"Downloading {update.Tag}"), progress, cancellation);
 
         TryDelete(old);
         File.Move(current, old);

@@ -7,7 +7,7 @@ Instant replay for Windows. It runs in the system tray, keeps a buffer with the 
 ## Requirements
 - Windows 10/11 x64
 - [.NET 10 SDK](https://dotnet.microsoft.com/) to build
-- ffmpeg 6 or later. If the app can't find it, it offers to download it (gyan.dev *essentials* build) to `%LOCALAPPDATA%\Cliperino\ffmpeg`. It also looks for it next to the `.exe` and in the `PATH`.
+- ffmpeg 6 or later. If the app can't find it, it offers to download it (gyan.dev *essentials* build 9.0.2, checked against its SHA-256) to `%LOCALAPPDATA%\Cliperino\ffmpeg`. It also looks for it next to the `.exe` and in the `PATH`.
 
 ## Build and run
 ```

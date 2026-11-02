@@ -7,7 +7,7 @@ Repetición instantánea para Windows. Corre en la bandeja del sistema, mantiene
 ## Requisitos
 - Windows 10/11 x64
 - [.NET 10 SDK](https://dotnet.microsoft.com/) para compilar
-- ffmpeg 6 o superior. Si la app no lo encuentra, ofrece descargarlo (build *essentials* de gyan.dev) a `%LOCALAPPDATA%\Cliperino\ffmpeg`. También lo busca junto al `.exe` y en el `PATH`.
+- ffmpeg 6 o superior. Si la app no lo encuentra, ofrece descargarlo (build *essentials* 9.0.2 de gyan.dev, verificada con su SHA-256) a `%LOCALAPPDATA%\Cliperino\ffmpeg`. También lo busca junto al `.exe` y en el `PATH`.
 
 ## Compilar y ejecutar
 ```

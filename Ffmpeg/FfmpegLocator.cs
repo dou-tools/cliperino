@@ -26,7 +26,12 @@ public sealed record FfmpegCapabilities(
 
 public static class FfmpegLocator
 {
-    const string DownloadUrl = "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip";
+    const string DownloadSha256 = "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba";
+    static readonly string[] DownloadUrls =
+    [
+        "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip",
+        "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+    ];
 
     static string ManagedPath => Path.Combine(AppPaths.FfmpegDir, "ffmpeg.exe");
 
@@ -46,7 +51,18 @@ public static class FfmpegLocator
         Directory.CreateDirectory(AppPaths.FfmpegDir);
         var zipPath = Path.Combine(AppPaths.FfmpegDir, "ffmpeg.zip");
 
-        await Downloader.DownloadAsync(DownloadUrl, zipPath, T("Descargando ffmpeg", "Downloading ffmpeg"), progress, cancellation);
+        for (int i = 0; ; i++)
+        {
+            try
+            {
+                await Downloader.DownloadAsync(DownloadUrls[i], DownloadSha256, zipPath, T("Descargando ffmpeg", "Downloading ffmpeg"), progress, cancellation);
+                break;
+            }
+            catch (Exception ex) when (i + 1 < DownloadUrls.Length && ex is HttpRequestException or InvalidDataException)
+            {
+                Log.Write($"No se pudo descargar ffmpeg de {DownloadUrls[i]}, se prueba el siguiente: {ex.Message}");
+            }
+        }
 
         progress.Report((T("Descomprimiendo ffmpeg…", "Extracting ffmpeg…"), 100));
         using (var zip = ZipFile.OpenRead(zipPath))
