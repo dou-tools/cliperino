@@ -11,7 +11,7 @@ public sealed record UpdateInfo(Version Version, string Tag, string DownloadUrl,
 
 public static class Updater
 {
-    const string LatestReleaseUrl = "https://api.github.com/repos/Lostdou/cliperino/releases/latest";
+    const string LatestReleaseUrl = "https://api.github.com/repos/dou-tools/cliperino/releases/latest";
     const string AssetName = "Cliperino.exe";
     const string AfterUpdateArgument = "--after-update";
     const string OldSuffix = ".old";

@@ -22,7 +22,7 @@ sealed class SettingsForm : Form
         public override string ToString() => Alias == null ? Executable : $"{Alias}   ({Executable})";
     }
 
-    const string RepoUrl = "https://github.com/Lostdou/cliperino";
+    const string RepoUrl = "https://github.com/dou-tools/cliperino";
     const string TwitterUrl = "https://x.com/nosoylostdou";
     static readonly Size PreviewSize = new(480, 270);
 
