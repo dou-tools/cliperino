@@ -18,6 +18,7 @@ static class Program
         }
 
         Updater.FinishPendingUpdate(args);
+        Updater.SyncInstalledVersion();
         Lang.Use(AppSettings.Load().Language);
         using var mutex = new Mutex(true, @"Local\Cliperino.SingleInstance", out var isFirstInstance);
         if (!isFirstInstance)

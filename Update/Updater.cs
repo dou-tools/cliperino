@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using Cliperino.Core;
+using Microsoft.Win32;
 
 namespace Cliperino.Update;
 
@@ -17,6 +18,7 @@ public static class Updater
     const string AfterUpdateArgument = "--after-update";
     const string OldSuffix = ".old";
     const string DownloadSuffix = ".download";
+    const string UninstallKey = @"Software\Microsoft\Windows\CurrentVersion\Uninstall\{6F3B9C2E-8A41-4D7B-9E15-2C7A0F4D8B63}_is1";
     static readonly TimeSpan RequestTimeout = TimeSpan.FromSeconds(20);
     static readonly TimeSpan PreviousInstanceTimeout = TimeSpan.FromSeconds(20);
 
@@ -50,6 +52,25 @@ public static class Updater
             WaitForExit(previousId);
         }
         if (Environment.ProcessPath is { } path) TryDelete(path + OldSuffix);
+    }
+
+    public static void SyncInstalledVersion()
+    {
+        try
+        {
+            using var key = Registry.CurrentUser.OpenSubKey(UninstallKey, writable: true);
+            if (key?.GetValue("InstallLocation") is not string location || Environment.ProcessPath is not { } path) return;
+            if (!string.Equals(Path.TrimEndingDirectorySeparator(location), Path.GetDirectoryName(path), StringComparison.OrdinalIgnoreCase)) return;
+            var version = $"{CurrentVersion}.0";
+            if (key.GetValue("DisplayVersion") as string == version) return;
+            key.SetValue("DisplayVersion", version);
+            key.SetValue("MajorVersion", CurrentVersion.Major, RegistryValueKind.DWord);
+            key.SetValue("MinorVersion", CurrentVersion.Minor, RegistryValueKind.DWord);
+        }
+        catch (Exception ex)
+        {
+            Log.Write($"No se pudo actualizar la versión en aplicaciones instaladas: {ex.Message}");
+        }
     }
 
     public static async Task<UpdateInfo?> CheckAsync(Version current)
