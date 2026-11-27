@@ -53,6 +53,9 @@ sealed class SettingsForm : Form
     readonly ComboBox feedback = Dropdown(220);
     readonly TextBox folder = new() { Width = 340 };
     readonly CheckBox folderPerGame = Check(T("Guardar cada juego en su carpeta", "Save each game in its own folder"));
+    readonly CheckBox limitStorage = Check(T("Mandar a la papelera los clips más viejos al pasar de", "Send the oldest clips to the Recycle Bin above"));
+    readonly NumericUpDown maxStorage = Number(1, 10000, 5);
+    readonly Label storageHint = Hint("");
 
     readonly ComboBox encoder = Dropdown(380);
     readonly ComboBox codec = Dropdown(380);
@@ -206,6 +209,12 @@ sealed class SettingsForm : Form
 
         folder.Text = s.OutputFolder;
         folderPerGame.Checked = s.FolderPerGame;
+        limitStorage.Checked = s.LimitStorage;
+        maxStorage.Value = s.MaxStorageGb;
+        maxStorage.Enabled = s.LimitStorage;
+        limitStorage.CheckedChanged += (_, _) => maxStorage.Enabled = limitStorage.Checked;
+        storageHint.Text = T($"Ahora ocupan {Gigabytes(ClipStorage.UsedBytes(s.OutputFolder))}. Si renombrás un clip, no se borra.",
+            $"They take {Gigabytes(ClipStorage.UsedBytes(s.OutputFolder))} now. Clips you rename are never removed.");
     }
 
     void LoadAdvancedValues(GpuSnapshot gpus, string? activePipeline)
@@ -268,6 +277,8 @@ sealed class SettingsForm : Form
         Row(grid, T("Aviso:", "Notice:"), feedback, Hint(T("Al activar, desactivar y guardar un clip", "When turning on, off and saving a clip")));
         Row(grid, T("Carpeta de clips:", "Clips folder:"), folder, browse);
         Row(grid, "", folderPerGame);
+        Row(grid, "", limitStorage, maxStorage, new Label { Text = "GB", AutoSize = true, Anchor = AnchorStyles.Left });
+        Row(grid, "", storageHint);
 
         var previewPanel = Stack(new Label { Text = T("Vista previa en vivo", "Live preview"), AutoSize = true }, preview, previewCaption);
         previewPanel.Margin = new Padding(16, 0, 0, 0);
@@ -490,6 +501,15 @@ sealed class SettingsForm : Form
             MessageBox.Show(this, T("Elegí una carpeta para los clips.", "Choose a folder for your clips."), "Cliperino", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
+        if (limitStorage.Checked && (!s.LimitStorage || maxStorage.Value < s.MaxStorageGb || !string.Equals(folder.Text.Trim(), s.OutputFolder, StringComparison.OrdinalIgnoreCase)))
+        {
+            long used = ClipStorage.UsedBytes(folder.Text.Trim());
+            if (used > (long)maxStorage.Value * ClipStorage.BytesPerGigabyte && MessageBox.Show(this,
+                    T($"Tus clips ocupan {Gigabytes(used)}. Cuando guardes el próximo, los más viejos van a ir a la papelera hasta bajar de {maxStorage.Value} GB.\n\n¿Seguir?",
+                      $"Your clips take {Gigabytes(used)}. When you save the next one, the oldest will go to the Recycle Bin until they're under {maxStorage.Value} GB.\n\nContinue?"),
+                    "Cliperino", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
+        }
 
         s.ReplaySeconds = (int)seconds.Value;
         s.CaptureMode = (CaptureMode)((Item)captureMode.SelectedItem!).Value!;
@@ -505,6 +525,8 @@ sealed class SettingsForm : Form
         s.Feedback = (FeedbackStyle)((Item)feedback.SelectedItem!).Value!;
         s.OutputFolder = folder.Text.Trim();
         s.FolderPerGame = folderPerGame.Checked;
+        s.LimitStorage = limitStorage.Checked;
+        s.MaxStorageGb = (int)maxStorage.Value;
         s.Encoder = (EncoderPreference)((Item)encoder.SelectedItem!).Value!;
         s.Codec = (VideoCodec)((Item)codec.SelectedItem!).Value!;
         s.Quality = SelectedQuality;
@@ -550,6 +572,8 @@ sealed class SettingsForm : Form
         using var icon = Icon.ExtractAssociatedIcon(path);
         return icon?.ToBitmap();
     }
+
+    static string Gigabytes(long bytes) => $"{bytes / (double)ClipStorage.BytesPerGigabyte:0.0} GB";
 
     static NumericUpDown Number(int min, int max, int increment) =>
         new() { Minimum = min, Maximum = max, Increment = increment, Width = 90 };

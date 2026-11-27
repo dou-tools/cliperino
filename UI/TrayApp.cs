@@ -312,6 +312,7 @@ sealed class TrayApp : ApplicationContext
                 SystemSounds.Asterisk.Play();
                 Notify(T("Clip guardado. Hacé clic acá para recortarlo.", "Clip saved. Click here to trim it."), ToolTipIcon.Info, () => OpenEditor(clip.Path));
             });
+            if (settings.LimitStorage) await Task.Run(() => ClipStorage.Trim(settings.OutputFolder, settings.MaxStorageGb, clip.Path));
         }
         catch (Exception ex)
         {

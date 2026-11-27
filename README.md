@@ -31,7 +31,7 @@ Produces `publish\Cliperino.exe`: a single executable of about 50 MB that includ
 - **Ctrl+Alt+F10** saves the last N seconds to `Videos\Cliperino`, in a subfolder per game (`Videos\Cliperino\VALORANT`, `Videos\Cliperino\cs2`…) if the game is open. Each game can have its own name (for example `THE FINALS` instead of `Discovery.exe`), used for the folder, the tray and the notice. Clicking the notification opens the editor so you can trim it.
 - From the tray menu you can turn instant replay on or off, save a clip, edit a clip, open the folder and open **Settings**.
 - **Settings** has three tabs:
-  - **Capture:** live preview of what's being recorded, duration, mode, games (with their names), monitor, FPS, audio, microphone, shortcut, notice, folder and whether each game gets its own folder.
+  - **Capture:** live preview of what's being recorded, duration, mode, games (with their names), monitor, FPS, audio, microphone, shortcut, notice, folder, whether each game gets its own folder and an optional space limit: above it, the oldest clips go to the Recycle Bin. It only counts the files Cliperino named (`Cliperino_*.mp4`), so a clip you rename is never removed.
   - **Advanced:** encoder, format (H.264 or HEVC), quality and audio offset. Quality can be Low, Balanced or High, and the bitrate is worked out from the monitor, FPS and format; with Custom you set it yourself. If the graphics card can't record HEVC, Cliperino uses H.264 and lets you know.
   - **Extras:** start with Windows, updates, language (Spanish or English, defaults to the Windows language), version and links to the project. When a new version is out, Cliperino shows what's new before updating: it takes the text of the GitHub release and, if it has `EN:` and `ES:` sections, shows the one in the app's language.
 - The preview in the Capture tab only runs while that tab is visible. If you change the monitor, the mode or the games, it shows how it will look before you save, without stopping the recording.
@@ -83,3 +83,4 @@ cliperino/
 - The on-screen notice doesn't show over games in exclusive fullscreen; it does in borderless or windowed mode, which is how most modern games run. It never shows up in clips.
 - The start of the clip is accurate to about 2 s (it's cut by segments without re-encoding).
 - If the audio is out of sync, adjust it with "Audio offset" in Settings.
+- With the space limit on, if the Recycle Bin is turned off for that drive, Windows deletes the old clips right away.

@@ -31,7 +31,7 @@ Genera `publish\Cliperino.exe`: un único ejecutable de unos 50 MB que incluye e
 - **Ctrl+Alt+F10** guarda los últimos N segundos en `Videos\Cliperino`, en una subcarpeta por juego (`Videos\Cliperino\VALORANT`, `Videos\Cliperino\cs2`…) si el juego está abierto. Cada juego puede tener un nombre propio (por ejemplo `THE FINALS` en vez de `Discovery.exe`), que se usa en la carpeta, en la bandeja y en el aviso. Al hacer clic en la notificación se abre el editor para recortarlo.
 - Desde el menú de la bandeja se activa o desactiva la repetición, se guarda un clip, se edita un clip, se abre la carpeta y se entra a los **Ajustes**.
 - **Ajustes** tiene tres pestañas:
-  - **Captura:** vista previa en vivo de lo que se graba, duración, modo, juegos (con su nombre), monitor, FPS, audio, micrófono, atajo, aviso, carpeta y si cada juego va en su carpeta.
+  - **Captura:** vista previa en vivo de lo que se graba, duración, modo, juegos (con su nombre), monitor, FPS, audio, micrófono, atajo, aviso, carpeta, si cada juego va en su carpeta y un límite de espacio opcional: al pasarlo, los clips más viejos van a la papelera. Solo cuenta los archivos que nombró Cliperino (`Cliperino_*.mp4`), así que un clip que renombres nunca se borra.
   - **Avanzado:** codificador, formato (H.264 o HEVC), calidad y desfase de audio. La calidad puede ser Baja, Equilibrada o Alta, y el bitrate se calcula solo según el monitor, los FPS y el formato; con Personalizada se pone a mano. Si la placa no puede grabar en HEVC, Cliperino usa H.264 y avisa.
   - **Extras:** inicio con Windows, actualizaciones, idioma (español o inglés, por defecto el de Windows), versión y enlaces al proyecto. Cuando sale una versión nueva, Cliperino muestra sus novedades antes de actualizar: toma el texto de la release de GitHub y, si tiene secciones `EN:` y `ES:`, muestra la del idioma de la app.
 - La vista previa de la pestaña Captura solo corre mientras esa pestaña está visible. Si cambiás el monitor, el modo o los juegos, muestra cómo va a quedar antes de guardar, sin cortar la grabación.
@@ -83,3 +83,4 @@ cliperino/
 - El aviso en pantalla no se ve sobre juegos en pantalla completa exclusiva; sí en ventana sin bordes o en ventana, que es como corren la mayoría de los juegos actuales. Nunca aparece en los clips.
 - El inicio del clip tiene unos 2 s de precisión (se corta por segmentos sin re-codificar).
 - Si el audio no queda sincronizado, se ajusta con "Desfase de audio" en Ajustes.
+- Con el límite de espacio activado, si la papelera está desactivada en esa unidad, Windows borra los clips viejos directamente.

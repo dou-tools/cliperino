@@ -43,6 +43,8 @@ public sealed class AppSettings
     public Language Language { get; set; } = Language.Auto;
     public FeedbackStyle Feedback { get; set; } = FeedbackStyle.Overlay;
     public bool FolderPerGame { get; set; } = true;
+    public bool LimitStorage { get; set; }
+    public int MaxStorageGb { get; set; } = 50;
 
     public string? CachedPipelineId { get; set; }
     public VideoCodec? CachedPipelineCodec { get; set; }
@@ -93,6 +95,7 @@ public sealed class AppSettings
         Fps = Fps is 30 or 60 or 120 ? Fps : 60;
         BitrateMbps = Math.Clamp(BitrateMbps, 2, 150);
         AudioOffsetMs = Math.Clamp(AudioOffsetMs, -2000, 2000);
+        MaxStorageGb = Math.Clamp(MaxStorageGb, 1, 10000);
         if (string.IsNullOrWhiteSpace(OutputFolder)) OutputFolder = AppPaths.DefaultClips;
         if (string.IsNullOrWhiteSpace(Hotkey)) Hotkey = "Ctrl+Alt+F10";
         GameExecutables = GameExecutables?.Select(g => g.Trim()).Where(g => g.Length > 0).ToList() ?? [];
