@@ -1,8 +1,8 @@
 # Cliperino
 
-> Cliperino is a free instant replay app for Windows 10 and 11 (64-bit). It records gameplay in the background and, when you press a shortcut (Ctrl+Alt+F10 by default), saves the last seconds or minutes as an .mp4 file. It works with NVIDIA, AMD and Intel graphics cards, or with the processor if there is none. It has no account, no ads, no watermark and no cloud: clips stay on your PC. The app and this site are available in Spanish and English.
+> Cliperino is a free instant replay app for Windows 10 and 11 (64-bit). It records gameplay in the background and, when you press a shortcut (Ctrl+Alt+F10 by default), saves the last seconds or minutes as an .mp4 file. It works with NVIDIA, AMD and Intel graphics cards, or with the processor if there is none. It has no account, no ads, no watermark and no cloud: clips stay on your PC. It's open source under the MIT license. The app and this site are available in Spanish and English.
 
-Cliperino es una app gratis de repetición instantánea para Windows 10 y 11 (64 bits). Graba en segundo plano y, cuando apretás un atajo (Ctrl+Alt+F10 de fábrica), guarda los últimos segundos o minutos como un .mp4. Funciona con placas NVIDIA, AMD o Intel, o con el procesador si no hay placa. No tiene cuentas, publicidad, marca de agua ni nube: los clips quedan en tu PC.
+Cliperino es una app gratis de repetición instantánea para Windows 10 y 11 (64 bits). Graba en segundo plano y, cuando apretás un atajo (Ctrl+Alt+F10 de fábrica), guarda los últimos segundos o minutos como un .mp4. Funciona con placas NVIDIA, AMD o Intel, o con el procesador si no hay placa. No tiene cuentas, publicidad, marca de agua ni nube: los clips quedan en tu PC. Es de código abierto, con licencia MIT.
 
 ## Features
 

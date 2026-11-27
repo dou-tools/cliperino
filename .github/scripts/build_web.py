@@ -116,6 +116,7 @@ def structured_data(language, page):
                 "inLanguage": ["es", "en"],
                 "author": {"@type": "Person", "name": "lostdou", "url": "https://lostdou.dev"},
                 "sameAs": ["https://github.com/dou-tools/cliperino"],
+                "license": "https://github.com/dou-tools/cliperino/blob/main/LICENSE",
             },
             {"@type": "WebSite", "@id": home + "#site", "url": home, "name": "Cliperino", "inLanguage": language},
             {
