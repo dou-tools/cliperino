@@ -17,6 +17,7 @@ public sealed class AudioRecorder : IAudioRecorder, IMMNotificationClient
     readonly object gate = new();
     WasapiCapture? capture;
     byte[] scratch = [];
+    volatile StereoDownmix? downmix;
     volatile AudioRingBuffer? ring;
     bool disposed;
 
@@ -61,14 +62,17 @@ public sealed class AudioRecorder : IAudioRecorder, IMMNotificationClient
                 var device = deviceId != null ? enumerator.GetDevice(deviceId) : enumerator.GetDefaultAudioEndpoint(flow, role);
                 var newCapture = flow == DataFlow.Render ? new WasapiLoopbackCapture(device) : new WasapiCapture(device);
                 var format = newCapture.WaveFormat;
+                var mix = StereoDownmix.For(format.Channels);
+                int channels = mix != null ? 2 : format.Channels;
+                downmix = mix;
                 var current = ring;
-                if (current == null || current.Format.SampleRate != format.SampleRate || current.Format.Channels != format.Channels)
-                    ring = new AudioRingBuffer(format.SampleRate, format.Channels, seconds);
+                if (current == null || current.Format.SampleRate != format.SampleRate || current.Format.Channels != channels)
+                    ring = new AudioRingBuffer(format.SampleRate, channels, seconds);
                 newCapture.DataAvailable += OnData;
                 newCapture.RecordingStopped += OnStopped;
                 capture = newCapture;
                 newCapture.StartRecording();
-                Log.Write($"Audio ({Name}): {device.FriendlyName}, {format}");
+                Log.Write($"Audio ({Name}): {device.FriendlyName}, {format}{(mix != null ? ", se guarda en estéreo" : "")}");
             }
             catch (Exception ex)
             {
@@ -95,7 +99,8 @@ public sealed class AudioRecorder : IAudioRecorder, IMMNotificationClient
     {
         var r = ring;
         if (sender != capture || r == null || sender is not IWaveIn source) return;
-        r.Write(ToPcm16(e.Buffer.AsSpan(0, e.BytesRecorded), source.WaveFormat), DateTime.UtcNow);
+        var pcm = ToPcm16(e.Buffer.AsSpan(0, e.BytesRecorded), source.WaveFormat);
+        r.Write(downmix is { } mix ? mix.Apply(pcm) : pcm, DateTime.UtcNow);
     }
 
     void OnStopped(object? sender, StoppedEventArgs e)
