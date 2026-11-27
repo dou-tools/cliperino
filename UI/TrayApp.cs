@@ -49,7 +49,7 @@ sealed class TrayApp : ApplicationContext
         pipelineItem = new ToolStripMenuItem("") { Enabled = false, Visible = false };
         toggleItem = new ToolStripMenuItem(T("Activar repetición instantánea", "Turn on instant replay"), null, async (_, _) => await ToggleAsync());
         saveItem = new ToolStripMenuItem(T("Guardar clip", "Save clip"), null, async (_, _) => await SaveClipAsync()) { Enabled = false };
-        updateItem = new ToolStripMenuItem(T("Buscar actualizaciones", "Check for updates"), null, async (_, _) => await OnUpdateItemAsync());
+        updateItem = new ToolStripMenuItem(T("Buscar actualizaciones", "Check for updates"), null, async (_, _) => await OnUpdateItemAsync()) { Visible = !Channel.IsStore };
         var menu = new ContextMenuStrip();
         menu.Items.AddRange(new ToolStripItem[]
         {
@@ -80,7 +80,18 @@ sealed class TrayApp : ApplicationContext
     {
         try
         {
+            if (Channel.IsStore)
+            {
+                settings.StartWithWindows = await WindowsStartup.IsEnabledAsync();
+                await CaptureAccess.AllowBorderlessAsync();
+            }
             ffmpeg = FfmpegLocator.Find();
+            if (ffmpeg == null && Channel.IsStore)
+            {
+                SetStatus(T("ffmpeg no encontrado", "ffmpeg not found"), idleIcon);
+                Notify(T("Falta un archivo de Cliperino. Reinstalalo desde la Microsoft Store.", "A Cliperino file is missing. Reinstall it from the Microsoft Store."), ToolTipIcon.Error);
+                return;
+            }
             if (ffmpeg == null)
             {
                 var answer = MessageBox.Show(
@@ -342,12 +353,13 @@ sealed class TrayApp : ApplicationContext
 
             var updated = form.Result;
             bool restart = IsRunning && (form.ForceRedetect || updated.CaptureChanged(settings));
+            bool startupChanged = updated.StartWithWindows != settings.StartWithWindows;
             if (form.ForceRedetect) updated.CachedPipelineId = null;
             failedWindow = IntPtr.Zero;
             warnedNoHevc = false;
             settings = updated;
             settings.Save();
-            settings.ApplyStartWithWindows();
+            if (startupChanged || !Channel.IsStore) _ = ApplyStartWithWindowsAsync();
             StartUpdateChecks();
             if (restart)
             {
@@ -360,6 +372,14 @@ sealed class TrayApp : ApplicationContext
             settingsForm = null;
             RegisterHotkey();
         }
+    }
+
+    async Task ApplyStartWithWindowsAsync()
+    {
+        if (await WindowsStartup.ApplyAsync(settings.StartWithWindows)) return;
+        settings.StartWithWindows = false;
+        settings.Save();
+        Notify(T("Windows tiene desactivado el inicio de Cliperino. Activalo en Configuración > Aplicaciones > Inicio.", "Windows has Cliperino's startup turned off. Turn it on in Settings > Apps > Startup."), ToolTipIcon.Warning);
     }
 
     void StartUpdateChecks()

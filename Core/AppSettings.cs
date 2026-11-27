@@ -1,6 +1,5 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Microsoft.Win32;
 
 namespace Cliperino.Core;
 
@@ -60,6 +59,12 @@ public sealed class AppSettings
     {
         try
         {
+            if (!File.Exists(AppPaths.SettingsFile) && AppPaths.PreviousSettingsFile is { } previous && File.Exists(previous))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(AppPaths.SettingsFile)!);
+                File.Copy(previous, AppPaths.SettingsFile);
+                Log.Write("Se importaron los ajustes de la versión de GitHub.");
+            }
             if (File.Exists(AppPaths.SettingsFile))
             {
                 var loaded = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText(AppPaths.SettingsFile), Json);
@@ -123,20 +128,4 @@ public sealed class AppSettings
         GameAliases.FirstOrDefault(a => string.Equals(a.Key, executable, StringComparison.OrdinalIgnoreCase)).Value;
 
     public string DisplayNameOf(string executable) => AliasOf(executable) ?? executable;
-
-    const string RunKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
-
-    public void ApplyStartWithWindows()
-    {
-        try
-        {
-            using var key = Registry.CurrentUser.CreateSubKey(RunKey);
-            if (StartWithWindows) key.SetValue("Cliperino", $"\"{Environment.ProcessPath}\"");
-            else key.DeleteValue("Cliperino", throwOnMissingValue: false);
-        }
-        catch (Exception ex)
-        {
-            Log.Write($"No se pudo actualizar el inicio con Windows: {ex.Message}");
-        }
-    }
 }

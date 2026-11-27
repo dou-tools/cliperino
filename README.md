@@ -108,6 +108,7 @@ Produces `publish\Cliperino.exe`: a single executable of about 50 MB that includ
   dotnet publish -p:SelfContained=false
   ```
 - **ffmpeg** isn't bundled in the executable: the app offers to download it the first time. If you'd rather ship it next to the `.exe`, the app will find it there too, but the *essentials* build is GPL and you have to include its license.
+- **Microsoft Store version:** `.\store\build.ps1` builds `publish\store\Cliperino-<version>.msix`. That version includes ffmpeg and its license, doesn't update itself (the Store does) and uses Windows' own startup setting. It needs the [Windows SDK](https://developer.microsoft.com/windows/downloads/windows-sdk/). With `-Install` it also installs it so you can try it out, which requires Developer Mode.
 
 <details>
 <summary><b>How it works</b></summary>
@@ -134,6 +135,7 @@ cliperino/
 ├── Audio/                       # Sound
 ├── UI/                          # Interface
 ├── Update/                      # Updates
+├── store/                       # Microsoft Store package: manifest, icons and build script
 ├── web/                         # Website (cliperino.lostdou.dev)
 └── .github/                     # Website deploy and the script that builds its English version
 ```
