@@ -80,6 +80,7 @@ sealed class SettingsForm : Form
         s = settings;
         this.previewSource = previewSource;
         Text = T("Cliperino - Ajustes", "Cliperino - Settings");
+        Icon = AppIcon.Value;
         Font = SystemFonts.MessageBoxFont ?? Font;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;

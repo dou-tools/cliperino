@@ -12,6 +12,7 @@ sealed class DownloadForm : Form
     public DownloadForm(string title)
     {
         Text = title;
+        Icon = AppIcon.Value;
         Font = SystemFonts.MessageBoxFont ?? Font;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;

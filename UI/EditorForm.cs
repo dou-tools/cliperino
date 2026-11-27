@@ -33,6 +33,7 @@ sealed class EditorForm : Form
         this.exactEncoderArgs = exactEncoderArgs;
         this.sizedEncoderArgs = sizedEncoderArgs;
         Text = $"Cliperino - {Path.GetFileName(clipPath)}";
+        Icon = AppIcon.Value;
         StartPosition = FormStartPosition.CenterScreen;
         AutoScaleMode = AutoScaleMode.Dpi;
         ClientSize = new Size(1100, 760);

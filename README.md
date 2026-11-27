@@ -59,6 +59,7 @@ Opens by clicking the "Clip saved" notification or with **Edit clip…**, in the
 cliperino/
 ├── Program.cs                   # Startup, single instance and --probe mode
 ├── Cliperino.csproj             # .NET 10 project and publish settings
+├── Cliperino.ico                # App icon
 ├── Core/                        # Shared base
 ├── Ffmpeg/                      # ffmpeg handling
 ├── Capture/                     # Video

@@ -59,6 +59,7 @@ Se abre haciendo clic en la notificación "Clip guardado" o con **Editar clip…
 cliperino/
 ├── Program.cs                   # Arranque, instancia única y modo --probe
 ├── Cliperino.csproj             # Proyecto .NET 10 y configuración de publicación
+├── Cliperino.ico                # Ícono de la app
 ├── Core/                        # Base compartida
 ├── Ffmpeg/                      # Manejo de ffmpeg
 ├── Capture/                     # Video
