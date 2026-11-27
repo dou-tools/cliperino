@@ -17,8 +17,11 @@ static class Program
             return PipelineBuilder.RunDiagnosticsAsync(Console.Out).GetAwaiter().GetResult();
         }
 
-        Updater.FinishPendingUpdate(args);
-        Updater.SyncInstalledVersion();
+        if (!Channel.IsStore)
+        {
+            Updater.FinishPendingUpdate(args);
+            Updater.SyncInstalledVersion();
+        }
         Lang.Use(AppSettings.Load().Language);
         using var mutex = new Mutex(true, @"Local\Cliperino.SingleInstance", out var isFirstInstance);
         if (!isFirstInstance)

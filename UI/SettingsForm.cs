@@ -314,7 +314,7 @@ sealed class SettingsForm : Form
         var grid = Grid();
         Row(grid, T("Inicio:", "Startup:"), startWithWindows);
         Row(grid, "", startOnLaunch);
-        Row(grid, T("Actualizaciones:", "Updates:"), checkUpdates);
+        if (!Channel.IsStore) Row(grid, T("Actualizaciones:", "Updates:"), checkUpdates);
         Row(grid, T("Idioma:", "Language:"), language, Hint(T("Se aplica al reiniciar Cliperino", "Applies after restarting Cliperino")));
         Row(grid, T("Versión:", "Version:"), new Label { Text = Updater.CurrentVersion.ToString(3), AutoSize = true, Anchor = AnchorStyles.Left });
         Row(grid, T("Proyecto:", "Project:"), Link(T("Mirá el proyecto en GitHub", "Check out the project on GitHub"), T("Abrir GitHub", "Open GitHub"), RepoUrl));

@@ -39,7 +39,7 @@ public static class Updater
     public static Version CurrentVersion { get; } = Normalize(typeof(Updater).Assembly.GetName().Version ?? new Version(0, 0));
 
     public static bool CanSelfUpdate =>
-        Environment.ProcessPath != null && !File.Exists(Path.Combine(AppContext.BaseDirectory, "Cliperino.dll"));
+        !Channel.IsStore && Environment.ProcessPath != null && !File.Exists(Path.Combine(AppContext.BaseDirectory, "Cliperino.dll"));
 
     public static bool JustUpdated { get; private set; }
 

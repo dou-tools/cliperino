@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap11="http://schemas.microsoft.com/appx/manifest/uap/windows10/11"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap uap11 desktop rescap">
+
+  <Identity Name="LostDou.Cliperino" Publisher="CN=37C9B723-DA77-4DD5-A4B3-FF708C39882A" Version="0.0.0.0" ProcessorArchitecture="x64" />
+
+  <Properties>
+    <DisplayName>Cliperino</DisplayName>
+    <PublisherDisplayName>LostDou</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.19041.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-US" />
+    <Resource Language="es" />
+  </Resources>
+
+  <Applications>
+    <Application Id="Cliperino" Executable="Cliperino.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements
+        DisplayName="Cliperino"
+        Description="Instant replay for Windows"
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png" />
+      <Extensions>
+        <desktop:Extension Category="windows.startupTask" Executable="Cliperino.exe" EntryPoint="Windows.FullTrustApplication">
+          <desktop:StartupTask TaskId="CliperinoStartup" Enabled="false" DisplayName="Cliperino" />
+        </desktop:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+    <uap11:Capability Name="graphicsCaptureWithoutBorder" />
+    <uap11:Capability Name="graphicsCaptureProgrammatic" />
+    <DeviceCapability Name="microphone" />
+  </Capabilities>
+</Package>
