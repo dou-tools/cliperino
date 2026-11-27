@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cliperino.lostdou.dev/sitemap.xml

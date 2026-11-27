@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Privacy policy - Cliperino">Política de privacidad - Cliperino</title>
+  <meta name="description" content="Qué datos toca Cliperino y cuándo se conecta a internet." data-en-content="What data Cliperino touches and when it connects to the internet.">
+  <link rel="canonical" href="https://cliperino.lostdou.dev/privacidad.html">
+  <link rel="alternate" hreflang="es" href="https://cliperino.lostdou.dev/privacidad.html">
+  <link rel="alternate" hreflang="en" href="https://cliperino.lostdou.dev/en/privacy.html">
+  <link rel="alternate" hreflang="x-default" href="https://cliperino.lostdou.dev/privacidad.html">
+  <meta name="theme-color" content="#111214">
+  <meta property="og:image" content="https://cliperino.lostdou.dev/img/social.jpg" data-en-content="https://cliperino.lostdou.dev/img/social-en.jpg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add("js");</script>
+  </head>
+<body>
+
+<a class="lang" id="lang" href="en/privacy.html" hreflang="en" lang="en" data-en="Español" data-en-href="../privacidad.html" data-en-hreflang="es" data-en-lang="es">English</a>
+
+<header class="doc-header">
+  <a class="logo small" href="./"><img class="mark" src="icon.svg" alt="" width="24" height="24">Cliperino</a>
+</header>
+
+<main class="doc">
+  <article data-lang="es">
+    <h1>Política de privacidad</h1>
+    <p class="updated">Última actualización: 27 de noviembre de 2026</p>
+    <p class="summary"><strong>La versión corta:</strong> Cliperino no tiene cuentas, publicidad ni analíticas. Tus clips, tus ajustes y lo que grabás no salen de tu PC. Solo se conecta a internet para buscar actualizaciones y para bajar ffmpeg la primera vez, y verifica todo lo que descarga antes de usarlo.</p>
+
+    <h2>Qué queda en tu PC</h2>
+    <ul>
+      <li><strong>Tus clips</strong>, en la carpeta que elijas (de fábrica, <code>Videos\Cliperino</code>).</li>
+      <li><strong>Lo que se está grabando</strong> mientras la repetición está activa, en pedazos temporales dentro de <code>%LOCALAPPDATA%\Cliperino\buffer</code>. Los más viejos se borran a medida que llegan nuevos, y se borran todos al apagar la repetición.</li>
+      <li><strong>Tus ajustes</strong>, en <code>%APPDATA%\Cliperino\settings.json</code>.</li>
+      <li><strong>Un registro de lo que hace la app</strong>, como los errores al grabar, en <code>%LOCALAPPDATA%\Cliperino\logs</code>. No se manda a ningún lado: si reportás un problema, vos decidís si lo compartís.</li>
+      <li><strong>El micrófono</strong> solo se graba si lo activás en los Ajustes, y queda dentro del clip, en tu PC.</li>
+    </ul>
+    <p>Cliperino no tiene servidores propios y no sube tus clips a ningún lado.</p>
+
+    <h2>Cuándo se conecta a internet</h2>
+    <ol>
+      <li><strong>Para buscar actualizaciones.</strong> Medio minuto después de abrirse y después cada 6 horas, le pregunta a GitHub (<code>api.github.com</code>) cuál es la última versión. Si hay una nueva y aceptás instalarla, la baja de la página de versiones del proyecto en GitHub y, antes de usarla, verifica que su huella SHA-256 coincida con la que publica GitHub. Si no coincide, la descarta. Podés apagar esta búsqueda en Ajustes → Extras, destildando "Avisarme cuando haya una versión nueva"; igual vas a poder buscar a mano desde el ícono de la bandeja.</li>
+      <li><strong>Para bajar ffmpeg</strong>, solo si te falta y aceptás descargarlo. Lo baja de gyan.dev, el sitio de los builds para Windows que recomienda ffmpeg.org, o, si ese falla, de la copia que publica el mismo autor en GitHub. Antes de usarlo verifica su huella SHA-256 contra la que viene escrita en Cliperino. Si no coincide, lo borra.</li>
+      <li><strong>Cuando tocás un enlace</strong> de la app (GitHub, X o esta página), que se abre en tu navegador.</li>
+    </ol>
+    <p>En esas conexiones el servidor ve lo mismo que en cualquier visita: tu dirección IP y que el programa se llama "Cliperino". No se manda nada sobre vos, tu PC ni tus clips. GitHub y gyan.dev tienen sus propias políticas de privacidad.</p>
+
+    <h2>El editor</h2>
+    <p>El editor usa Microsoft Edge WebView2, que viene con Windows, para mostrar el clip. El video se lee directo desde tu disco y no se sube a ningún lado. WebView2 es un componente de Microsoft y se rige por la configuración de privacidad de Windows.</p>
+
+    <h2>Discord y otras apps</h2>
+    <p>Cliperino no se conecta con Discord ni con ninguna red social. Cuando mandás un clip, lo subís vos, y ahí rige la política de ese servicio.</p>
+
+    <h2>Esta página web</h2>
+    <ul>
+      <li>Está alojada en GitHub Pages. GitHub puede registrar datos técnicos de cada visita, como tu dirección IP, según <a href="https://docs.github.com/es/site-policy/privacy-policies/github-general-privacy-statement">su declaración de privacidad</a>.</li>
+      <li>Para contar visitas usa hits.sh: una imagen invisible que tu navegador pide como cualquier otra, así que hits.sh recibe tu IP y los datos de tu navegador. Solo se usa para saber cuánta gente entra.</li>
+      <li>Si cambiás el idioma, se guarda en tu navegador para la próxima vez. Esta página no usa cookies.</li>
+      <li>Las descargas vienen directo de GitHub.</li>
+    </ul>
+
+    <h2>Si algo cambia</h2>
+    <p>Si esta política cambia, se actualiza esta página y la fecha de arriba.</p>
+
+    <h2>Contacto</h2>
+    <p>Si tenés dudas, escribilas en los <a href="https://github.com/dou-tools/cliperino/issues">issues de GitHub</a>.</p>
+  </article>
+
+  <article data-lang="en" hidden>
+    <h1>Privacy policy</h1>
+    <p class="updated">Last updated: November 27, 2026</p>
+    <p class="summary"><strong>The short version:</strong> Cliperino has no accounts, ads or analytics. Your clips, your settings and what you record never leave your PC. It only goes online to check for updates and to download ffmpeg the first time, and it verifies everything it downloads before using it.</p>
+
+    <h2>What stays on your PC</h2>
+    <ul>
+      <li><strong>Your clips</strong>, in the folder you choose (<code>Videos\Cliperino</code> by default).</li>
+      <li><strong>What's being recorded</strong> while instant replay is on, in temporary chunks inside <code>%LOCALAPPDATA%\Cliperino\buffer</code>. The oldest ones are deleted as new ones arrive, and all of them are deleted when you turn instant replay off.</li>
+      <li><strong>Your settings</strong>, in <code>%APPDATA%\Cliperino\settings.json</code>.</li>
+      <li><strong>A log of what the app does</strong>, such as recording errors, in <code>%LOCALAPPDATA%\Cliperino\logs</code>. It isn't sent anywhere: if you report a problem, you decide whether to share it.</li>
+      <li><strong>The microphone</strong> is only recorded if you turn it on in Settings, and it stays inside the clip, on your PC.</li>
+    </ul>
+    <p>Cliperino has no servers of its own and never uploads your clips.</p>
+
+    <h2>When it goes online</h2>
+    <ol>
+      <li><strong>To check for updates.</strong> Half a minute after it starts and then every 6 hours, it asks GitHub (<code>api.github.com</code>) for the latest version. If there's a new one and you choose to install it, it downloads it from the project's releases page on GitHub and, before using it, checks that its SHA-256 fingerprint matches the one GitHub publishes. If it doesn't match, the download is discarded. You can turn this off in Settings → Extras by unchecking "Let me know when there's a new version"; you can still check manually from the tray icon.</li>
+      <li><strong>To download ffmpeg</strong>, only if it's missing and you agree. It comes from gyan.dev, the site with the Windows builds recommended by ffmpeg.org, or, if that fails, from the copy the same author publishes on GitHub. Before using it, Cliperino checks its SHA-256 fingerprint against the one written into the app. If it doesn't match, the file is deleted.</li>
+      <li><strong>When you click a link</strong> in the app (GitHub, X or this site), which opens in your browser.</li>
+    </ol>
+    <p>On those connections the server sees the same as on any visit: your IP address and that the program is called "Cliperino". Nothing about you, your PC or your clips is sent. GitHub and gyan.dev have their own privacy policies.</p>
+
+    <h2>The editor</h2>
+    <p>The editor uses Microsoft Edge WebView2, which comes with Windows, to show the clip. The video is read straight from your disk and is never uploaded. WebView2 is a Microsoft component and follows your Windows privacy settings.</p>
+
+    <h2>Discord and other apps</h2>
+    <p>Cliperino doesn't connect to Discord or any social network. When you send a clip, you upload it yourself, and that service's policy applies.</p>
+
+    <h2>This website</h2>
+    <ul>
+      <li>It's hosted on GitHub Pages. GitHub may log technical data about each visit, such as your IP address, as described in <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">its privacy statement</a>.</li>
+      <li>To count visits it uses hits.sh: an invisible image your browser requests like any other, so hits.sh receives your IP and browser details. It's only used to know how many people visit.</li>
+      <li>If you change the language, it's saved in your browser for next time. This site doesn't use cookies.</li>
+      <li>Downloads come straight from GitHub.</li>
+    </ul>
+
+    <h2>If something changes</h2>
+    <p>If this policy changes, this page and the date above are updated.</p>
+
+    <h2>Contact</h2>
+    <p>If you have questions, post them in the <a href="https://github.com/dou-tools/cliperino/issues">GitHub issues</a>.</p>
+  </article>
+</main>
+
+<footer>
+  <span data-en="Made with ❤ by <a href=&quot;https://lostdou.dev&quot;>lostdou</a>">Hecho con ❤ por <a href="https://lostdou.dev">lostdou</a></span>
+  <nav>
+    <a href="https://github.com/dou-tools/cliperino">GitHub</a>
+    <a href="https://github.com/dou-tools/cliperino/issues" data-en="Report a problem">Reportar un problema</a>
+    <a href="privacidad.html" data-en="Privacy">Privacidad</a>
+    <a href="terminos.html" data-en="Terms">Términos</a>
+  </nav>
+</footer>
+
+<script src="site.js"></script>
+
+</body>
+</html>

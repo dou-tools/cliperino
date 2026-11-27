@@ -3,17 +3,180 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cliperino - Repetición instantánea para Windows</title>
-  <meta name="description" content="Cliperino graba en segundo plano y guarda los últimos segundos de tu partida con un atajo. Gratis, liviano y para cualquier GPU.">
+  <title data-en="Cliperino - Free instant replay for Windows">Cliperino - Repetición instantánea gratis para Windows</title>
+  <meta name="description" content="Cliperino graba en segundo plano y guarda los últimos segundos de tu partida con un atajo. Gratis, sin cuenta, para cualquier GPU y con clips listos para Discord."
+    data-en-content="Cliperino records in the background and saves the last seconds of your game with a shortcut. Free, no account, works with any GPU and makes clips ready for Discord.">
+  <link rel="canonical" href="https://cliperino.lostdou.dev/">
+  <link rel="alternate" hreflang="es" href="https://cliperino.lostdou.dev/">
+  <link rel="alternate" hreflang="en" href="https://cliperino.lostdou.dev/en/">
+  <link rel="alternate" hreflang="x-default" href="https://cliperino.lostdou.dev/">
+  <meta name="theme-color" content="#111214">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cliperino">
+  <meta property="og:url" content="https://cliperino.lostdou.dev/">
+  <meta property="og:title" content="Cliperino - Repetición instantánea gratis para Windows" data-en-content="Cliperino - Free instant replay for Windows">
+  <meta property="og:description" content="Graba en segundo plano y guarda los últimos segundos de tu partida con un atajo. Gratis, sin cuenta y para cualquier GPU." data-en-content="It records in the background and saves the last seconds of your game with a shortcut. Free, no account and works with any GPU.">
+  <meta property="og:image" content="https://cliperino.lostdou.dev/img/social.jpg" data-en-content="https://cliperino.lostdou.dev/img/social-en.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Cliperino, repetición instantánea para Windows" data-en-content="Cliperino, instant replay for Windows">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="fonts/unbounded.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="icon.ico">
+  <link rel="icon" href="icon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add("js");</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://cliperino.lostdou.dev/#app",
+      "name": "Cliperino",
+      "url": "https://cliperino.lostdou.dev/",
+      "description": "Repetición instantánea gratis para Windows: graba en segundo plano y guarda los últimos segundos de tu partida con un atajo. Sin cuenta, para cualquier GPU y con clips listos para Discord.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Windows 10, Windows 11",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "downloadUrl": "https://github.com/dou-tools/cliperino/releases/latest/download/Cliperino-Setup.exe",
+      "image": "https://cliperino.lostdou.dev/img/social.jpg",
+      "screenshot": [
+        "https://cliperino.lostdou.dev/img/editor.webp",
+        "https://cliperino.lostdou.dev/img/ajustes.webp"
+      ],
+      "featureList": [
+        "Repetición instantánea: guarda los últimos segundos o minutos con un atajo",
+        "Funciona con placas NVIDIA, AMD o Intel, o con el procesador",
+        "Editor para recortar clips",
+        "Compresión para Discord: hasta 10 MB o 50 MB",
+        "Micrófono en una pista de audio aparte",
+        "Una carpeta por juego",
+        "Límite de espacio que manda los clips viejos a la papelera"
+      ],
+      "inLanguage": [
+        "es",
+        "en"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "lostdou",
+        "url": "https://lostdou.dev"
+      },
+      "sameAs": [
+        "https://github.com/dou-tools/cliperino"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://cliperino.lostdou.dev/#site",
+      "url": "https://cliperino.lostdou.dev/",
+      "name": "Cliperino",
+      "inLanguage": "es"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://cliperino.lostdou.dev/#faq",
+      "inLanguage": "es",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Es gratis? ¿Tiene publicidad o marca de agua?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es gratis. No tiene publicidad, no pide cuenta y los clips no llevan ninguna marca de agua."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Windows dice que \"protegió el equipo\". ¿Es seguro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aparece porque Cliperino es un proyecto chico y no está firmado digitalmente. Tocá \"Más información\" y después \"Ejecutar de todas formas\". El código está completo en GitHub para quien quiera revisarlo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Mis clips se suben a algún lado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Cliperino no tiene cuentas ni servidores: los clips quedan en tu carpeta y los compartís solo si querés. Los detalles están en la política de privacidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Sirve como alternativa a ShadowPlay o AMD ReLive?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Hace lo mismo que su repetición instantánea, pero no depende de la marca de tu placa: funciona con NVIDIA, AMD o Intel, e incluso sin placa de video."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Funciona con juegos con anticheat, como VALORANT?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Cliperino no se mete en el juego: graba la ventana o la pantalla con las herramientas de captura de Windows, así que no choca con el anticheat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto dura y cuánto pesa un clip?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Elegís cuánto guarda, de 5 segundos a 20 minutos (de fábrica, 1 minuto). Un minuto en calidad equilibrada, a 1080p y 60 FPS, pesa unos 150 MB. Si querés que ocupe menos, bajá la calidad o ponele un límite de espacio a la carpeta."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál descargo, el instalador o la portable?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El instalador, si no sabés cuál elegir: lo deja en su lugar, crea el acceso en el menú Inicio y se desinstala desde la configuración de Windows. La portable es un solo .exe que podés llevar donde quieras."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Afecta el rendimiento del juego?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Muy poco: la grabación la hace la placa de video y el buffer se guarda en el disco en pedazos de 2 segundos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Funciona en Mac, Linux o Windows 7?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, por ahora solo funciona en Windows 10 y 11 de 64 bits."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Encontré un error o tengo una idea",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Contalo en los issues de GitHub. También se puede abrir desde Ajustes → Extras."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
   </head>
 <body>
 
-<button class="lang" id="lang" type="button">English</button>
+<a class="lang" id="lang" href="en/" hreflang="en" lang="en" data-en="Español" data-en-href="../" data-en-hreflang="es" data-en-lang="es">English</a>
 
-<header>
-  <h1 class="logo"><span class="dot"></span>Cliperino</h1>
+<header class="hero">
+  <h1 class="logo"><img class="mark" src="icon.svg" alt="" width="40" height="40">Cliperino</h1>
   <p class="tagline" data-en="It records in the background and, when something good happens, you press a key and it saves the last few seconds.">Graba en segundo plano y, cuando pasa algo bueno, apretás una tecla y te guarda los últimos segundos.</p>
   <a class="download" href="https://github.com/dou-tools/cliperino/releases/latest/download/Cliperino-Setup.exe" data-en="Download for Windows">Descargar para Windows</a>
   <p class="download-note">
@@ -31,52 +194,190 @@
 </header>
 
 <main>
-  <section>
-    <h2 data-en="What it does">Qué hace</h2>
-    <div class="features">
-      <div class="card">
-        <h3 data-en="Saves what already happened">Guarda lo que ya pasó</h3>
-        <p data-en="It always keeps the last seconds or minutes ready. Press the shortcut and an .mp4 lands in your clips folder.">Siempre tiene los últimos segundos o minutos listos. Apretás el atajo y queda un .mp4 en tu carpeta de clips.</p>
+  <section class="scene save">
+    <div class="scene-text reveal">
+      <span class="eyebrow">01 · <span data-en="Instant replay">Repetición instantánea</span></span>
+      <h2 class="display" data-en="Save it">Guardalo</h2>
+      <p data-en="Cliperino records in the background without you noticing. When something good happens, press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F10</kbd> and the last few seconds land as an .mp4 in your clips folder.">Cliperino graba en segundo plano sin que lo notes. Cuando pasa algo bueno, apretás <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F10</kbd> y los últimos segundos quedan como un .mp4 en tu carpeta de clips.</p>
+    </div>
+    <div class="stage" data-scroll>
+      <div class="screen">
+        <video src="img/guardar.mp4" poster="img/guardar.jpg" width="960" height="540" muted loop playsinline preload="none" data-play-visible></video>
+        <span class="rec" aria-hidden="true"><span class="rec-dot"></span>REC</span>
+        <div class="screen-toast" aria-hidden="true"><span class="toast-dot"></span><span data-en="Clip saved · 1:00 min">Clip guardado · 1:00 min</span></div>
       </div>
-      <div class="card">
-        <h3 data-en="Any GPU, or even none">Cualquier GPU, o incluso sin una</h3>
-        <p data-en="It uses your graphics card's encoder: NVIDIA, AMD or Intel, dedicated or integrated. If there isn't one, it uses the processor.">Usa el codificador de tu placa: NVIDIA, AMD o Intel, dedicada o integrada. Si no hay, usa el procesador.</p>
+      <div class="screen-keys" aria-hidden="true"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>F10</kbd></div>
+    </div>
+  </section>
+
+  <section class="wall" data-scroll>
+    <div class="wall-row"><ul class="wall-track" data-marquee style="--speed:80s">
+      <li><img src="img/juegos/counterstrike2.webp" alt="Counter-Strike 2" width="170" height="35" loading="lazy"></li>
+      <li><img src="img/juegos/valorant.webp" alt="VALORANT" width="170" height="24" loading="lazy"></li>
+      <li><img src="img/juegos/fortnite.webp" alt="Fortnite" width="170" height="46" loading="lazy"></li>
+      <li><img src="img/juegos/leagueoflegends.webp" alt="League of Legends" width="136" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/rocketleague.webp" alt="Rocket League" width="134" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/roblox.webp" alt="Roblox" width="170" height="30" loading="lazy"></li>
+      <li><img src="img/juegos/overwatch2.webp" alt="Overwatch 2" width="170" height="18" loading="lazy"></li>
+      <li><img src="img/juegos/apexlegends.webp" alt="Apex Legends" width="81" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/marvelrivals.webp" alt="Marvel Rivals" width="136" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/siegex.webp" alt="Rainbow Six Siege X" width="170" height="50" loading="lazy"></li>
+    </ul></div>
+    <div class="wall-row reverse"><ul class="wall-track" data-marquee style="--speed:95s">
+      <li class="named"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M 9.817 23.607 L 9.471 23.313 L 9.003 23.273 C 8.419 23.225 8.147 23.172 7.817 23.041 L 7.559 22.938 L 7.281 23.048 C 7.045 23.143 6.467 23.229 6.028 23.236 C 6.004 23.236 5.964 23.18 5.939 23.111 C 5.911 23.041 5.862 22.974 5.824 22.961 C 5.789 22.949 5.527 23.007 5.237 23.094 L 4.712 23.252 L 4.523 23.161 C 4.285 23.045 4.185 23.047 3.787 23.168 C 3.484 23.262 3.446 23.264 3.203 23.212 C 2.84 23.136 2.537 23.141 1.854 23.238 C 1.11 23.344 1.094 23.344 0.875 23.194 C 0.728 23.094 0.648 23.069 0.469 23.069 C 0.266 23.069 0.244 23.06 0.221 22.965 C 0.206 22.906 0.225 22.787 0.264 22.688 C 0.376 22.41 0.42 21.736 0.432 20.125 L 0.444 18.62 L 0.655 18.635 L 0.863 18.65 L 0.895 17.78 C 0.911 17.302 0.927 16.611 0.93 16.246 L 0.935 15.586 L 0.823 15.506 C 0.518 15.283 0.532 15.315 0.405 14.588 C 0.339 14.211 0.274 13.658 0.259 13.358 C 0.234 12.826 0.236 12.811 0.334 12.7 L 0.434 12.586 L 0.682 12.799 C 0.82 12.916 0.937 12.993 0.948 12.969 C 0.984 12.856 0.871 11.508 0.813 11.338 C 0.775 11.238 0.747 11.101 0.747 11.03 C 0.747 10.962 0.679 10.778 0.594 10.618 L 0.443 10.329 L 0.494 9.816 C 0.561 9.136 0.475 8.636 0.19 8.034 L 0.065 7.763 L 0.144 7.09 L 0.228 6.416 L 0.14 6.067 L 0.049 5.717 L 0.154 5.326 L 0.255 4.933 L 0.14 4.553 L 0.021 4.174 L 0.164 3.774 C 0.305 3.385 0.308 3.364 0.305 2.73 C 0.303 2.016 0.228 1.551 0.08 1.365 C -0.047 1.203 -0.026 1.092 0.163 0.919 C 0.253 0.834 0.328 0.726 0.328 0.681 C 0.328 0.612 0.359 0.599 0.549 0.595 C 0.669 0.595 1.039 0.563 1.372 0.525 L 1.979 0.452 L 2.773 0.569 C 3.565 0.684 3.566 0.684 4.652 0.638 L 5.74 0.591 L 5.997 0.746 L 6.257 0.899 L 7.312 0.884 L 8.368 0.869 L 8.724 0.74 C 8.918 0.669 9.229 0.545 9.414 0.461 C 9.596 0.377 9.927 0.264 10.144 0.204 L 10.542 0.099 L 11.056 0.261 L 11.57 0.425 L 12.014 0.276 L 12.456 0.127 L 12.933 0.285 C 13.196 0.371 13.684 0.583 14.022 0.757 L 14.633 1.069 L 15.273 1.051 C 15.758 1.036 15.924 1.018 15.95 0.973 C 15.97 0.942 16.031 0.758 16.083 0.566 L 16.178 0.215 L 16.783 0.235 C 17.236 0.251 17.642 0.299 18.384 0.429 L 19.379 0.605 L 19.638 0.501 C 19.778 0.444 20.046 0.375 20.233 0.351 C 20.546 0.309 20.6 0.314 21.027 0.422 C 21.425 0.522 21.562 0.537 22.109 0.537 C 22.454 0.537 22.812 0.522 22.907 0.506 C 23.07 0.478 23.097 0.489 23.428 0.728 C 23.621 0.866 23.792 1.001 23.807 1.03 C 23.824 1.057 23.86 1.203 23.884 1.354 L 23.93 1.632 L 23.721 2.028 C 23.604 2.246 23.507 2.443 23.507 2.466 C 23.507 2.489 23.555 2.527 23.611 2.554 C 23.668 2.579 23.764 2.677 23.826 2.771 L 23.937 2.941 L 23.912 5.226 C 23.897 6.483 23.872 7.604 23.858 7.715 L 23.831 7.919 L 23.486 7.897 L 23.142 7.87 L 23.113 8.061 C 23.097 8.164 23.084 8.353 23.084 8.485 C 23.084 8.677 23.054 8.778 22.924 9.031 L 22.761 9.342 L 22.851 9.471 C 22.901 9.543 23.072 9.736 23.231 9.901 L 23.523 10.206 L 23.434 10.529 L 23.344 10.854 L 23.451 11.542 C 23.575 12.369 23.566 12.577 23.363 13.293 C 23.282 13.58 23.217 13.846 23.217 13.886 C 23.217 13.961 23.272 13.98 23.644 14.031 C 23.809 14.052 23.844 14.072 23.844 14.147 C 23.844 14.196 23.87 15.251 23.904 16.492 C 24.011 20.567 24.021 21.456 23.971 22.38 C 23.944 22.862 23.913 23.262 23.904 23.271 C 23.894 23.28 23.563 23.147 23.166 22.976 L 22.443 22.668 L 22.131 22.803 C 21.809 22.942 21.777 22.978 21.735 23.245 C 21.706 23.422 21.728 23.414 20.935 23.576 L 20.468 23.672 L 20.014 23.52 C 19.594 23.379 19.537 23.369 19.206 23.391 C 18.959 23.406 18.789 23.394 18.644 23.351 C 18.436 23.292 18.436 23.292 18.087 23.453 L 17.735 23.612 L 16.435 23.612 C 15.066 23.61 14.784 23.632 13.841 23.807 C 13.189 23.927 12.96 23.922 11.819 23.785 L 11.217 23.711 L 10.796 23.807 C 10.562 23.861 10.326 23.903 10.27 23.901 C 10.202 23.901 10.046 23.8 9.819 23.607 L 9.817 23.607 Z M 7.284 19.918 C 8.289 19.539 9.118 19.223 9.123 19.216 C 9.136 19.202 5.206 15.39 4.684 14.909 C 4.539 14.775 4.409 14.672 4.399 14.682 C 4.39 14.693 4.07 15.547 3.69 16.577 C 3.27 17.715 3.011 18.476 3.032 18.508 C 3.057 18.55 5.424 20.599 5.451 20.605 C 5.454 20.605 6.279 20.296 7.284 19.918 Z M 20.796 17.829 C 21.319 16.564 21.732 15.519 21.718 15.504 C 21.699 15.483 11.888 8.858 5.02 4.226 L 4.469 3.855 L 3.569 4.262 C 3.072 4.484 2.673 4.687 2.68 4.709 C 2.69 4.737 6.011 8.219 10.064 12.449 L 17.432 20.141 L 18.638 20.133 L 19.847 20.125 L 20.796 17.829 Z M 19.434 6.972 C 19.607 6.01 19.75 5.191 19.75 5.151 C 19.75 5.108 19.497 4.902 19.074 4.605 C 18.702 4.343 18.373 4.115 18.344 4.096 C 18.291 4.063 14.442 5.104 14.447 5.149 C 14.451 5.179 19.091 8.748 19.107 8.731 C 19.115 8.725 19.261 7.932 19.434 6.972 Z"/></svg>Dota 2</li>
+      <li class="named"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.425 20.693c-.107-.247-.132-.4-.131-.8 0-.376.015-.478.208-1.416a38 38 0 0 0 .2-1.015c-.1-.056-.481-.376-.7-.587-.49-.472-.799-.938-.942-1.415-.059-.195-.067-.282-.056-.592.013-.341.02-.378.127-.599a2 2 0 0 1 .257-.39c.14-.15.145-.161.188-.465.024-.171.072-.493.105-.715.054-.36.056-.424.018-.592a2.84 2.84 0 0 1 .082-1.529c.358-.99 1.39-1.681 3-2.007 1.226-.249 2.815-.265 4.374-.045 1.537.218 3.344.715 5.011 1.38.214.086.392.152.396.148.014-.014-1.28-.668-1.61-.814A17 17 0 0 0 8.28 8.073C7.472 7.92 7.22 7.9 6.147 7.9c-.931 0-1.068.007-1.46.073a7 7 0 0 0-.836.18c-.1.03-.056-.046.082-.141.516-.356 1.36-.69 2.23-.886.853-.191.851-.177.023-.165-.407.006-.74.002-.74-.009s.025-.041.055-.068a10 10 0 0 0 .342-.376c.493-.56 1.253-1.22 1.923-1.667 1.278-.854 2.553-1.345 4.124-1.588.51-.08 2.061-.08 2.6 0 1.682.245 2.964.707 4.14 1.49.554.37.864.624 1.339 1.101.953.958 1.613 2.02 2.191 3.527.31.808.601 1.76.756 2.474l.072.331.164.115c.09.063.183.152.206.198s.166.448.316.894c.151.445.286.814.3.82s.026.111.026.234c0 .213-.004.225-.086.264-.106.05-1.037.255-1.16.255-.127 0-.23-.11-.322-.343l-.177-.436c-.054-.128-.172-.416-.263-.638-.302-.739-.295-.725-.394-.766-.08-.033-.128-.026-.393.064-.166.057-.35.13-.407.165a.55.55 0 0 0-.221.4c-.001.091.23.762.289.84.067.089 1.591 1.11 1.688 1.131.06.013.253-.014.528-.074l.438-.094c.003 0 .016.215.028.478.021.45.018.486-.043.607-.104.204-.003.16-1.67.723-1.314.444-1.564.497-2.353.497a4.5 4.5 0 0 1-2.388-.644c-.48-.283-1.052-.767-1.224-1.037-.133-.209-.16-.04.34-2.195.1-.427.194-.781.211-.787.017-.005.09.1.163.236s.164.266.202.29.287.14.552.259c.409.182.515.217.695.228a.82.82 0 0 0 .79-.41c.083-.131.097-.2.213-1.07l.158-1.178c.098-.725.09-.957-.046-1.248-.153-.327-.328-.474-.881-.741-.918-.444-.862-.435-1.279-.204-.158.088-.29.161-.293.164a8 8 0 0 0 .313-.006l.318-.01.52.24c.408.19.555.275.678.392.301.29.393.655.31 1.241-.052.37-.085.458-.23.615-.185.202-.334.269-.596.27-.208 0-.243-.01-.732-.24-.509-.24-.516-.242-.79-.249l-.276-.007-.039.156-.166.685c-.162.673-.477 1.976-.735 3.038-.11.454-.258 1.063-.327 1.355-.159.668-.214.86-.307 1.075-.219.503-.689.99-1.2 1.245-.578.287-1.076.342-1.828.205a45 45 0 0 0-4.48-.615c-.606-.053-2.655-.053-3.051 0-.826.111-1.187.19-1.535.337a1.93 1.93 0 0 0-.847.672c-.174.257-.253.71-.191 1.092.029.177-.008.192-.079.03zm.317-3.394c0-.028.06-.365.165-.929.1-.538.212-.748.576-1.086.604-.56 1.758-.924 3.331-1.05.557-.045 2.451-.014 3.072.05 1.287.131 1.77.195 2.88.38.906.151.886.15.7.073a58 58 0 0 0-2.054-.744c-1.222-.412-1.941-.578-3.207-.74-.625-.08-2.496-.081-3.082-.001-1.13.154-1.95.382-2.568.717-.523.282-.895.643-1.049 1.02-.09.22-.075.702.03.956.124.299.332.586.65.9.436.428.556.526.556.454m-.558-4.09c.15-.107.649-.33.963-.43.525-.169.957-.256 1.805-.367.497-.065 2.617-.093 3.284-.043l.716.053c.286.022.316-.01.392-.418l.184-.974c.19-1 .248-1.318.249-1.375 0-.105-.107-.19-.281-.217-.792-.129-2.275-.198-3.255-.153-2.203.1-3.583.628-4.102 1.566a1.6 1.6 0 0 0-.219.662q-.018.188.01.105c.143-.436.52-.88.926-1.094.237-.125.26-.132.26-.088 0 .015-.063.058-.14.096q-.273.131-.513.593c-.153.295-.193.468-.297 1.291a61 61 0 0 1-.096.74c-.021.135-.008.14.114.053m9.586-.184c.066-.052.078-.085.078-.236 0-.159-.01-.184-.102-.266-.12-.108-.188-.114-.298-.028-.161.128-.122.44.069.544.11.06.16.057.253-.014m7.349-1.91c.223-.15.319-.421.251-.712-.118-.515-.662-.73-.966-.384-.283.322-.166.91.22 1.1.178.088.361.087.495-.004m-.321-.32c-.187-.102-.245-.433-.103-.586.108-.117.285-.115.4.006.166.172.172.42.016.551-.105.088-.19.096-.313.029m-6.548-.146c.098-.139.036-.446-.105-.521-.09-.049-.204-.039-.257.022-.14.16-.142.312-.003.476.1.12.29.132.366.023z"/></svg>PUBG</li>
+      <li><img src="img/juegos/thefinals.webp" alt="THE FINALS" width="112" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/minecraft.webp" alt="Minecraft" width="170" height="20" loading="lazy"></li>
+      <li><img src="img/juegos/gta.webp" alt="Grand Theft Auto" width="66" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/rust.webp" alt="Rust" width="170" height="40" loading="lazy"></li>
+      <li><img src="img/juegos/deadbydaylight.webp" alt="Dead by Daylight" width="170" height="30" loading="lazy"></li>
+      <li><img src="img/juegos/callofduty.webp" alt="Call of Duty" width="170" height="30" loading="lazy"></li>
+      <li><img src="img/juegos/amongus.webp" alt="Among Us" width="170" height="44" loading="lazy"></li>
+      <li><img src="img/juegos/osu.webp" alt="osu!" width="50" height="52" loading="lazy"></li>
+    </ul></div>
+    <div class="wall-head reveal">
+      <span class="eyebrow" data-en="Online or single-player">Online o de un jugador</span>
+      <h2 class="display" data-en="Any game">Cualquier juego</h2>
+      <p data-en="If it's on your screen, Cliperino records it. Competitive, with friends or on your own.">Si se ve en tu pantalla, Cliperino lo graba. Competitivos, con amigos o de un jugador.</p>
+    </div>
+    <div class="wall-row"><ul class="wall-track" data-marquee style="--speed:90s">
+      <li><img src="img/juegos/eldenring.webp" alt="Elden Ring" width="170" height="25" loading="lazy"></li>
+      <li><img src="img/juegos/witcher3.webp" alt="The Witcher 3" width="106" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/cyberpunk2077.webp" alt="Cyberpunk 2077" width="170" height="42" loading="lazy"></li>
+      <li><img src="img/juegos/rdr2.webp" alt="Red Dead Redemption 2" width="144" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/thelastofus.webp" alt="The Last of Us" width="170" height="36" loading="lazy"></li>
+      <li><img src="img/juegos/clairobscur.webp" alt="Clair Obscur: Expedition 33" width="90" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/blackmythwukong.webp" alt="Black Myth: Wukong" width="170" height="40" loading="lazy"></li>
+      <li><img src="img/juegos/godofwar.webp" alt="God of War" width="170" height="35" loading="lazy"></li>
+      <li><img src="img/juegos/residentevil4.webp" alt="Resident Evil 4" width="170" height="32" loading="lazy"></li>
+      <li><img src="img/juegos/sekiro.webp" alt="Sekiro: Shadows Die Twice" width="170" height="42" loading="lazy"></li>
+    </ul></div>
+    <div class="wall-row reverse"><ul class="wall-track" data-marquee style="--speed:75s">
+      <li><img src="img/juegos/hollowknight.webp" alt="Hollow Knight" width="170" height="22" loading="lazy"></li>
+      <li><img src="img/juegos/hades2.webp" alt="Hades II" width="110" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/ghostoftsushima.webp" alt="Ghost of Tsushima" width="170" height="47" loading="lazy"></li>
+      <li><img src="img/juegos/geometrydash.webp" alt="Geometry Dash" width="170" height="18" loading="lazy"></li>
+      <li><img src="img/juegos/celeste.webp" alt="Celeste" width="170" height="32" loading="lazy"></li>
+      <li><img src="img/juegos/undertale.webp" alt="Undertale" width="170" height="17" loading="lazy"></li>
+      <li><img src="img/juegos/portal2.webp" alt="Portal 2" width="170" height="36" loading="lazy"></li>
+      <li><img src="img/juegos/balatro.webp" alt="Balatro" width="154" height="52" loading="lazy"></li>
+      <li><img src="img/juegos/subnautica.webp" alt="Subnautica" width="170" height="17" loading="lazy"></li>
+      <li><img src="img/juegos/minecraft.webp" alt="Minecraft" width="170" height="20" loading="lazy"></li>
+    </ul></div>
+  </section>
+
+  <section class="scene wide edit">
+    <div class="scene-text reveal">
+      <span class="eyebrow">02 · <span data-en="Editor">Editor</span></span>
+      <h2 class="display" data-en="Trim it">Recortalo</h2>
+      <p data-en="Click the notice and the editor opens: mark the start and the end, drop your voice or all the audio, and if it's going to Discord, pick the size.">Hacé clic en el aviso y se abre el editor: marcás el inicio y el fin, sacás tu voz o todo el audio, y si lo vas a mandar por Discord, elegís el tamaño.</p>
+    </div>
+    <div class="layers" data-scroll data-tracks aria-hidden="true">
+      <div class="layer layer-size">
+        <span class="layer-label">03 · <span data-en="Size">Tamaño</span></span>
+        <div class="size-panel">
+          <span class="size-select" data-en="Up to 10 MB (Discord)">Hasta 10 MB (Discord)</span>
+          <span class="size-value">9.8 <small>MB</small></span>
+          <span class="size-bar"><span></span></span>
+          <span class="size-note" data-en="fits without Nitro">entra sin Nitro</span>
+        </div>
       </div>
-      <div class="card">
-        <h3 data-en="Just the game">Solo el juego</h3>
-        <p data-en="Record the game window or the whole screen, and the audio from the whole PC or just the game. The microphone is optional.">Graba la ventana del juego o la pantalla entera, y el audio de toda la PC o solo el del juego. El micrófono es opcional.</p>
+      <div class="layer layer-audio">
+        <span class="layer-label">02 · Audio <i data-en="3 tracks">3 pistas</i></span>
+        <div class="audio-panel">
+          <div class="track"><span data-en="System and microphone">Sistema y micrófono</span><div class="wave" data-wave="mix"></div></div>
+          <div class="track"><span data-en="System">Sistema</span><div class="wave" data-wave="system"></div></div>
+          <div class="track"><span data-en="Microphone">Micrófono</span><div class="wave" data-wave="microphone"></div></div>
+        </div>
       </div>
-      <div class="card">
-        <h3 data-en="Built-in editor">Editor incluido</h3>
-        <p data-en="Trim the clip or remove its audio in seconds, without opening another program.">Recortá el clip o sacale el audio en segundos, sin abrir otro programa.</p>
-      </div>
-      <div class="card">
-        <h3 data-en="On-screen notice">Aviso en pantalla</h3>
-        <p data-en="A small notice in the corner lets you know when recording starts or stops and when a clip is saved, without pulling you out of the game.">Un cartel chico en la esquina te avisa cuando empieza o deja de grabar y cuando se guarda un clip, sin sacarte del juego.</p>
-      </div>
-      <div class="card">
-        <h3 data-en="Sorted by game">Ordenado por juego</h3>
-        <p data-en="Each clip goes into a folder named after its game, like <code>Cliperino\VALORANT</code>.">Cada clip va a una carpeta con el nombre de su juego, como <code>Cliperino\VALORANT</code>.</p>
-      </div>
-      <div class="card">
-        <h3 data-en="Lightweight">Liviano</h3>
-        <p data-en="It lives in the system tray and you barely notice it while you play.">Vive en la bandeja del sistema y casi no se nota mientras jugás.</p>
+      <div class="layer layer-trim">
+        <span class="layer-label">01 · <span data-en="Trim">Recorte</span></span>
+        <img src="img/editor.webp" alt="" width="1102" height="792" loading="lazy" data-en-src="img/en/editor.webp">
       </div>
     </div>
   </section>
 
+  <section class="scene share" data-scroll>
+    <div class="floaters" aria-hidden="true">
+      <span class="floater" style="--x:2%;--y:4%;--w:210px;--depth:0.55;--c:0;--r:0"></span>
+      <span class="floater" style="--x:19%;--y:-2%;--w:150px;--depth:0.3;--c:1;--r:0"></span>
+      <span class="floater" style="--x:77%;--y:2%;--w:230px;--depth:0.75;--c:2;--r:0"></span>
+      <span class="floater" style="--x:89%;--y:30%;--w:170px;--depth:0.4;--c:3;--r:0"></span>
+      <span class="floater" style="--x:-1%;--y:40%;--w:240px;--depth:0.85;--c:0;--r:1"></span>
+      <span class="floater" style="--x:86%;--y:62%;--w:250px;--depth:0.95;--c:1;--r:1"></span>
+      <span class="floater" style="--x:5%;--y:78%;--w:180px;--depth:0.45;--c:2;--r:1"></span>
+      <span class="floater" style="--x:68%;--y:90%;--w:160px;--depth:0.35;--c:3;--r:1"></span>
+    </div>
+    <div class="share-head reveal">
+      <span class="eyebrow">03 · Discord</span>
+      <h2 class="display" data-en="Send it">Mandalo</h2>
+      <p data-en="Pick <strong>Up to 10 MB</strong> and Cliperino adjusts the quality so it fits on Discord without Nitro. With long clips it lowers the resolution or frame rate a little, so it still looks good.">Elegí <strong>Hasta 10 MB</strong> y Cliperino ajusta la calidad para que entre en Discord sin Nitro. Con clips largos baja un poco la resolución o los cuadros por segundo, así se sigue viendo bien.</p>
+    </div>
+    <div class="share-card">
+      <video src="img/discord.mp4" poster="img/discord.jpg" width="1280" height="720" muted loop playsinline preload="none" data-play-visible></video>
+    </div>
+    <div class="share-chips">
+      <span data-en="10 MB · no Nitro">10 MB · sin Nitro</span>
+      <span>50 MB · Nitro Basic</span>
+    </div>
+  </section>
+
+  <section class="scene wide tune">
+    <div class="scene-text reveal">
+      <span class="eyebrow">04 · <span data-en="Settings">Ajustes</span></span>
+      <h2 class="display" data-en="Your way">A tu gusto</h2>
+      <p data-en="Choose between just the game window or the whole screen, which audio and which shortcut. The live preview shows how it'll look before you save anything.">Elegí si se graba solo la ventana del juego o la pantalla entera, con qué audio y con qué atajo. La vista previa en vivo te muestra cómo va a quedar antes de guardar nada.</p>
+    </div>
+    <div class="tilt" data-scroll>
+      <img src="img/ajustes.webp" alt="Ventana de ajustes de Cliperino con la vista previa en vivo del juego" width="1159" height="590" loading="lazy"
+        data-en-src="img/en/settings.webp" data-en-alt="Cliperino settings window with a live preview of the game" data-en-width="1122">
+    </div>
+  </section>
+
   <section>
-    <h2 data-en="How it looks">Así se ve</h2>
-    <figure>
-      <img src="img/ajustes.png" alt="Ventana de ajustes de Cliperino con la vista previa en vivo del juego" width="1117" height="468" loading="lazy"
-        data-en-src="img/en/settings.png" data-en-alt="Cliperino settings window with a live preview of the game" data-en-width="1087">
-      <figcaption data-en="Settings with a live preview: see what's being recorded before saving anything.">Ajustes con vista previa en vivo: ves lo que se está grabando antes de guardar nada.</figcaption>
-    </figure>
-    <figure>
-      <img src="img/editor.png" alt="Editor de clips de Cliperino con la línea de tiempo para recortar" width="1102" height="792" loading="lazy"
-        data-en-src="img/en/editor.png" data-en-alt="Cliperino clip editor with the timeline for trimming">
-      <figcaption data-en="The editor: mark the start and the end, and you're done.">El editor: marcás el inicio y el fin, y listo.</figcaption>
-    </figure>
+    <h2 data-en="And also">Y además</h2>
+    <div class="extras reveal">
+      <div class="card" style="--i:0">
+        <div class="visual" aria-hidden="true"><div class="chips"><span>NVIDIA</span><span>AMD</span><span>Intel</span><span>CPU</span></div></div>
+        <h3 data-en="Any GPU, or even none">Cualquier GPU, o incluso sin una</h3>
+        <p data-en="It uses your graphics card's encoder: NVIDIA, AMD or Intel, dedicated or integrated. If there isn't one, it uses the processor.">Usa el codificador de tu placa: NVIDIA, AMD o Intel, dedicada o integrada. Si no hay, usa el procesador.</p>
+      </div>
+      <div class="card" style="--i:1">
+        <div class="visual" aria-hidden="true"><div class="mini-toast"><span class="toast-dot"></span><span data-en="Instant replay on">Repetición instantánea activada</span></div></div>
+        <h3 data-en="On-screen notice">Aviso en pantalla</h3>
+        <p data-en="A small notice in the corner lets you know when recording starts or stops and when a clip is saved, without pulling you out of the game.">Un cartel chico en la esquina te avisa cuando empieza o deja de grabar y cuando se guarda un clip, sin sacarte del juego.</p>
+      </div>
+      <div class="card" style="--i:2">
+        <div class="visual" aria-hidden="true"><div class="folders">
+          <span class="folder">Cliperino</span>
+          <span class="folder sub">VALORANT <em data-en="12 clips">12 clips</em></span>
+          <span class="folder sub">Fortnite <em data-en="5 clips">5 clips</em></span>
+        </div></div>
+        <h3 data-en="Sorted by game">Ordenado por juego</h3>
+        <p data-en="Each clip goes into a folder named after its game, like <code>Cliperino\VALORANT</code>.">Cada clip va a una carpeta con el nombre de su juego, como <code>Cliperino\VALORANT</code>.</p>
+      </div>
+      <div class="card" style="--i:3">
+        <div class="visual" aria-hidden="true"><div class="storage">
+          <div class="storage-bar"><span></span></div>
+          <span class="storage-text" data-en="38 of 50 GB">38 de 50 GB</span>
+        </div></div>
+        <h3 data-en="It won't eat your disk">No se come tu disco</h3>
+        <p data-en="Set a limit if you want: above it, the oldest clips go to the Recycle Bin. Clips you renamed are never touched.">Si querés, le ponés un límite: al pasarlo, los clips más viejos van a la papelera. Los que renombraste no se tocan.</p>
+      </div>
+      <div class="card" style="--i:4">
+        <div class="visual" aria-hidden="true"><div class="tray">
+          <span class="tray-tip" data-en="Cliperino · Recording Valorant">Cliperino · Grabando Valorant</span>
+          <span class="tray-bar"><span class="tray-up"></span><span class="tray-app"></span><span class="tray-clock">21:04</span></span>
+        </div></div>
+        <h3 data-en="Lightweight">Liviano</h3>
+        <p data-en="It lives in the system tray and you barely notice it while you play.">Vive en la bandeja del sistema y casi no se nota mientras jugás.</p>
+      </div>
+      <div class="card" style="--i:5">
+        <div class="visual" aria-hidden="true"><div class="private"><span class="lock"></span><span data-en="No account · No cloud · No ads">Sin cuenta · Sin nube · Sin publicidad</span></div></div>
+        <h3 data-en="Everything stays on your PC">Todo queda en tu PC</h3>
+        <p data-en="Your clips and settings never leave your computer. More in the <a href=&quot;privacidad.html&quot;>privacy policy</a>.">Tus clips y ajustes no salen de tu compu. Más en la <a href="privacidad.html">política de privacidad</a>.</p>
+      </div>
+    </div>
   </section>
 
   <section>
@@ -85,15 +386,35 @@
       <li data-en="Download and install Cliperino. The first time, it offers to download ffmpeg (about 100 MB), which is what it uses to record.">Descargá e instalá Cliperino. La primera vez te ofrece bajar ffmpeg (unos 100 MB), que es lo que usa para grabar.</li>
       <li data-en="Open your game. Cliperino sits in the system tray, next to the clock, recording.">Abrí tu juego. Cliperino queda en la bandeja del sistema, al lado del reloj, grabando.</li>
       <li data-en="When something worth keeping happens, press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F10</kbd>. The clip is saved to <code>Videos\Cliperino</code>.">Cuando pase algo que valga la pena, apretá <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F10</kbd>. El clip queda en <code>Videos\Cliperino</code>.</li>
-      <li data-en="Click the &quot;Clip saved&quot; notification to trim it, or change the shortcut and the length in Settings.">Hacé clic en el aviso de "Clip guardado" para recortarlo, o cambiá el atajo y la duración desde los Ajustes.</li>
+      <li data-en="Click the &quot;Clip saved&quot; notification to trim it or get it ready for Discord. The shortcut and the length can be changed in Settings.">Hacé clic en el aviso de "Clip guardado" para recortarlo o dejarlo listo para Discord. El atajo y la duración se cambian desde los Ajustes.</li>
     </ol>
   </section>
 
   <section>
     <h2 data-en="FAQ">Preguntas frecuentes</h2>
     <details>
+      <summary data-en="Is it free? Does it have ads or a watermark?">¿Es gratis? ¿Tiene publicidad o marca de agua?</summary>
+      <p data-en="It's free. It has no ads, doesn't ask for an account and clips don't carry any watermark.">Es gratis. No tiene publicidad, no pide cuenta y los clips no llevan ninguna marca de agua.</p>
+    </details>
+    <details>
       <summary data-en="Windows says it &quot;protected your PC&quot;. Is it safe?">Windows dice que "protegió el equipo". ¿Es seguro?</summary>
       <p data-en="It shows up because Cliperino is a small project and isn't digitally signed. Click &quot;More info&quot; and then &quot;Run anyway&quot;. The full source code is on GitHub for anyone who wants to check it.">Aparece porque Cliperino es un proyecto chico y no está firmado digitalmente. Tocá "Más información" y después "Ejecutar de todas formas". El código está completo en GitHub para quien quiera revisarlo.</p>
+    </details>
+    <details>
+      <summary data-en="Are my clips uploaded anywhere?">¿Mis clips se suben a algún lado?</summary>
+      <p data-en="No. Cliperino has no accounts or servers: clips stay in your folder and you share them only if you want to. The details are in the <a href=&quot;privacidad.html&quot;>privacy policy</a>.">No. Cliperino no tiene cuentas ni servidores: los clips quedan en tu carpeta y los compartís solo si querés. Los detalles están en la <a href="privacidad.html">política de privacidad</a>.</p>
+    </details>
+    <details>
+      <summary data-en="Is it an alternative to ShadowPlay or AMD ReLive?">¿Sirve como alternativa a ShadowPlay o AMD ReLive?</summary>
+      <p data-en="Yes. It does the same as their instant replay, but it doesn't depend on your graphics card's brand: it works with NVIDIA, AMD or Intel, and even without a graphics card.">Sí. Hace lo mismo que su repetición instantánea, pero no depende de la marca de tu placa: funciona con NVIDIA, AMD o Intel, e incluso sin placa de video.</p>
+    </details>
+    <details>
+      <summary data-en="Does it work with anti-cheat games like VALORANT?">¿Funciona con juegos con anticheat, como VALORANT?</summary>
+      <p data-en="Yes. Cliperino doesn't touch the game: it records the window or the screen with Windows' own capture tools, so it doesn't get in the way of the anti-cheat.">Sí. Cliperino no se mete en el juego: graba la ventana o la pantalla con las herramientas de captura de Windows, así que no choca con el anticheat.</p>
+    </details>
+    <details>
+      <summary data-en="How long is a clip and how big is it?">¿Cuánto dura y cuánto pesa un clip?</summary>
+      <p data-en="You choose how much it keeps, from 5 seconds to 20 minutes (1 minute by default). One minute at balanced quality, 1080p and 60 FPS takes about 150 MB. If you want it to take less, lower the quality or set a space limit for the folder.">Elegís cuánto guarda, de 5 segundos a 20 minutos (de fábrica, 1 minuto). Un minuto en calidad equilibrada, a 1080p y 60 FPS, pesa unos 150 MB. Si querés que ocupe menos, bajá la calidad o ponele un límite de espacio a la carpeta.</p>
     </details>
     <details>
       <summary data-en="Which one should I download, the installer or the portable version?">¿Cuál descargo, el instalador o la portable?</summary>
@@ -104,9 +425,19 @@
       <p data-en="Very little: the graphics card does the recording, and the buffer is saved to disk in 2-second chunks.">Muy poco: la grabación la hace la placa de video y el buffer se guarda en el disco en pedazos de 2 segundos.</p>
     </details>
     <details>
+      <summary data-en="Does it work on Mac, Linux or Windows 7?">¿Funciona en Mac, Linux o Windows 7?</summary>
+      <p data-en="No, for now it only works on 64-bit Windows 10 and 11.">No, por ahora solo funciona en Windows 10 y 11 de 64 bits.</p>
+    </details>
+    <details>
       <summary data-en="I found a bug or have an idea">Encontré un error o tengo una idea</summary>
       <p data-en="Tell me in the <a href=&quot;https://github.com/dou-tools/cliperino/issues&quot;>GitHub issues</a>. You can also get there from Settings → Extras.">Contalo en los <a href="https://github.com/dou-tools/cliperino/issues">issues de GitHub</a>. También se puede abrir desde Ajustes → Extras.</p>
     </details>
+  </section>
+
+  <section class="cta reveal">
+    <h2 class="display" data-en="Your next clip?">¿Tu próximo clip?</h2>
+    <p data-en="It's free, with no account and no ads.">Es gratis, sin cuenta y sin publicidad.</p>
+    <a class="download" href="https://github.com/dou-tools/cliperino/releases/latest/download/Cliperino-Setup.exe" data-en="Download for Windows">Descargar para Windows</a>
   </section>
 </main>
 
@@ -115,56 +446,14 @@
   <nav>
     <a href="https://github.com/dou-tools/cliperino">GitHub</a>
     <a href="https://github.com/dou-tools/cliperino/issues" data-en="Report a problem">Reportar un problema</a>
+    <a href="privacidad.html" data-en="Privacy">Privacidad</a>
+    <a href="terminos.html" data-en="Terms">Términos</a>
   </nav>
   <img class="hits" src="https://hits.sh/cliperino.lostdou.dev.svg" alt="" width="1" height="1" aria-hidden="true">
 </footer>
 
+<script src="site.js"></script>
 <script>
-  const head = {
-    es: {
-      title: document.title,
-      description: document.querySelector('meta[name="description"]').content,
-    },
-    en: {
-      title: "Cliperino - Instant replay for Windows",
-      description: "Cliperino records in the background and saves the last seconds of your game with a shortcut. Free, lightweight and works with any GPU.",
-    },
-  };
-
-  function swap(element, attribute, english) {
-    const key = "es" + attribute;
-    if (!(key in element.dataset)) element.dataset[key] = element.getAttribute(attribute);
-    element.setAttribute(attribute, english ? element.dataset["en" + attribute[0].toUpperCase() + attribute.slice(1)] : element.dataset[key]);
-  }
-
-  function setLanguage(language) {
-    const english = language === "en";
-    document.documentElement.lang = language;
-    document.title = head[language].title;
-    document.querySelector('meta[name="description"]').content = head[language].description;
-    for (const element of document.querySelectorAll("[data-en]")) {
-      if (!("es" in element.dataset)) element.dataset.es = element.innerHTML;
-      element.innerHTML = english ? element.dataset.en : element.dataset.es;
-    }
-    for (const attribute of ["src", "alt", "width"]) {
-      for (const element of document.querySelectorAll(`[data-en-${attribute}]`)) swap(element, attribute, english);
-    }
-    document.getElementById("lang").textContent = english ? "Español" : "English";
-  }
-
-  function savedLanguage() {
-    try { return localStorage.getItem("lang"); } catch { return null; }
-  }
-
-  let current = savedLanguage() || (navigator.language.toLowerCase().startsWith("es") ? "es" : "en");
-  if (current === "en") setLanguage("en");
-
-  document.getElementById("lang").addEventListener("click", () => {
-    current = current === "en" ? "es" : "en";
-    setLanguage(current);
-    try { localStorage.setItem("lang", current); } catch {}
-  });
-
   const demo = document.getElementById("demo");
   const toast = document.getElementById("demo-toast");
   demo.addEventListener("timeupdate", () => {

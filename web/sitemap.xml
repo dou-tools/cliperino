@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://cliperino.lostdou.dev/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cliperino.lostdou.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cliperino.lostdou.dev/en/"/>
+  </url>
+  <url>
+    <loc>https://cliperino.lostdou.dev/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cliperino.lostdou.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cliperino.lostdou.dev/en/"/>
+  </url>
+  <url>
+    <loc>https://cliperino.lostdou.dev/privacidad.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cliperino.lostdou.dev/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cliperino.lostdou.dev/en/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://cliperino.lostdou.dev/en/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cliperino.lostdou.dev/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cliperino.lostdou.dev/en/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://cliperino.lostdou.dev/terminos.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cliperino.lostdou.dev/terminos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cliperino.lostdou.dev/en/terms.html"/>
+  </url>
+  <url>
+    <loc>https://cliperino.lostdou.dev/en/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cliperino.lostdou.dev/terminos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cliperino.lostdou.dev/en/terms.html"/>
+  </url>
+</urlset>

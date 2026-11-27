@@ -1,0 +1,29 @@
+# Cliperino
+
+> Cliperino is a free instant replay app for Windows 10 and 11 (64-bit). It records gameplay in the background and, when you press a shortcut (Ctrl+Alt+F10 by default), saves the last seconds or minutes as an .mp4 file. It works with NVIDIA, AMD and Intel graphics cards, or with the processor if there is none. It has no account, no ads, no watermark and no cloud: clips stay on your PC. The app and this site are available in Spanish and English.
+
+Cliperino es una app gratis de repetición instantánea para Windows 10 y 11 (64 bits). Graba en segundo plano y, cuando apretás un atajo (Ctrl+Alt+F10 de fábrica), guarda los últimos segundos o minutos como un .mp4. Funciona con placas NVIDIA, AMD o Intel, o con el procesador si no hay placa. No tiene cuentas, publicidad, marca de agua ni nube: los clips quedan en tu PC.
+
+## Features
+
+- Instant replay: keeps from 5 seconds to 20 minutes ready (1 minute by default) and saves it with a shortcut.
+- Records the game window or the whole screen, with the whole PC's audio or just the game's.
+- Optional microphone on its own audio track: clips have the mix, the system audio and the microphone as separate tracks.
+- Built-in editor to trim clips, remove the microphone or all the audio.
+- Discord compression: "Up to 10 MB" (no Nitro) or "Up to 50 MB" (Nitro Basic); it lowers resolution or frame rate only when needed.
+- Saves each game's clips in its own folder, like Videos\Cliperino\VALORANT.
+- Optional space limit: above it, the oldest clips go to the Recycle Bin. Clips you renamed are never removed.
+- On-screen notice when recording starts or stops and when a clip is saved.
+- Works with anti-cheat games like VALORANT because it doesn't touch the game: it uses Windows' own capture tools.
+- Uses ffmpeg, which it offers to download the first time (about 100 MB) and verifies with a SHA-256 hash.
+- Checks for updates on GitHub and verifies each download before installing it.
+
+## Links
+
+- [Website in English](https://cliperino.lostdou.dev/en/): features, how to use it and FAQ.
+- [Sitio en español](https://cliperino.lostdou.dev/): funciones, cómo se usa y preguntas frecuentes.
+- [Download the installer](https://github.com/dou-tools/cliperino/releases/latest/download/Cliperino-Setup.exe)
+- [Download the portable .exe](https://github.com/dou-tools/cliperino/releases/latest/download/Cliperino.exe)
+- [Source code, releases and issues on GitHub](https://github.com/dou-tools/cliperino)
+- [Privacy policy](https://cliperino.lostdou.dev/en/privacy.html): what stays on your PC and when the app goes online.
+- [Terms of use](https://cliperino.lostdou.dev/en/terms.html)

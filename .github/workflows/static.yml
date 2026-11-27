@@ -3,7 +3,7 @@ name: web
 on:
   push:
     branches: [main]
-    paths: ["web/**"]
+    paths: ["web/**", ".github/scripts/build_web.py"]
   workflow_dispatch:
 
 permissions:
@@ -23,6 +23,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - run: python3 .github/scripts/build_web.py web
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
