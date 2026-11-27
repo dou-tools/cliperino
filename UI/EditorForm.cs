@@ -1,13 +1,10 @@
 using static Cliperino.Core.Lang;
 using System.Diagnostics;
-using System.Globalization;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
 using Cliperino.Capture;
 using Cliperino.Core;
-using Cliperino.Ffmpeg;
 
 namespace Cliperino.UI;
 
@@ -19,9 +16,7 @@ sealed class EditorForm : Form
     static readonly Color Background = Color.FromArgb(20, 20, 20);
     static readonly JsonSerializerOptions Json = new() { PropertyNameCaseInsensitive = true };
 
-    sealed record EditorMessage(string Action, double Start, double End, bool RemoveAudio, bool Exact, bool Replace);
-
-    sealed record ClipInfo(bool HasAudio, VideoCodec Codec, double Fps);
+    sealed record EditorMessage(string Action, double Start, double End, bool RemoveAudio, bool RemoveMicrophone, bool Exact, bool Replace);
 
     readonly WebView2 view = new() { Dock = DockStyle.Fill, DefaultBackgroundColor = Background };
     readonly string ffmpeg;
@@ -52,7 +47,8 @@ sealed class EditorForm : Form
     {
         try
         {
-            var environment = await CoreWebView2Environment.CreateAsync(null, Path.Combine(AppPaths.Data, "webview2"));
+            var options = new CoreWebView2EnvironmentOptions { AdditionalBrowserArguments = "--enable-blink-features=AudioVideoTracks" };
+            var environment = await CoreWebView2Environment.CreateAsync(null, Path.Combine(AppPaths.Data, "webview2"), options);
             await view.EnsureCoreWebView2Async(environment);
         }
         catch (WebView2RuntimeNotFoundException)
@@ -69,8 +65,8 @@ sealed class EditorForm : Form
         core.Settings.IsStatusBarEnabled = false;
         core.SetVirtualHostNameToFolderMapping(ClipHost, Path.GetDirectoryName(clipPath)!, CoreWebView2HostResourceAccessKind.Allow);
         core.WebMessageReceived += OnWebMessage;
-        var info = await ProbeAsync();
-        core.NavigationCompleted += (_, _) => Post(new { type = "load", url = ClipUrl, hasAudio = info.HasAudio, fps = info.Fps });
+        var info = await ClipEditor.ProbeAsync(ffmpeg, clipPath);
+        core.NavigationCompleted += (_, _) => Post(new { type = "load", url = ClipUrl, hasAudio = info.HasAudio, separateMicrophone = info.SeparateMicrophone, fps = info.Fps });
         core.NavigateToString(ReadPage());
     }
 
@@ -85,16 +81,16 @@ sealed class EditorForm : Form
     {
         if (exporting) return;
         exporting = true;
-        var edit = new ClipEdit(message.Start, message.End, message.RemoveAudio, message.Exact, message.Replace);
+        var edit = new ClipEdit(message.Start, message.End, message.RemoveAudio, message.RemoveMicrophone, message.Exact, message.Replace);
         try
         {
-            var codec = (await ProbeAsync()).Codec;
-            var output = await Task.Run(() => ClipEditor.ExportAsync(ffmpeg, clipPath, edit, codec, exactEncoderArgs(codec)));
+            var info = await ClipEditor.ProbeAsync(ffmpeg, clipPath);
+            var output = await Task.Run(() => ClipEditor.ExportAsync(ffmpeg, clipPath, edit, info, exactEncoderArgs(info.Codec)));
             lastOutput = output;
             if (edit.Replace)
             {
-                var hasAudio = (await ProbeAsync()).HasAudio;
-                Post(new { type = "done", text = T("Listo, se reemplazó el original.", "Done, the original was replaced."), reload = true, url = ClipUrl, hasAudio });
+                var replaced = await ClipEditor.ProbeAsync(ffmpeg, clipPath);
+                Post(new { type = "done", text = T("Listo, se reemplazó el original.", "Done, the original was replaced."), reload = true, url = ClipUrl, hasAudio = replaced.HasAudio, separateMicrophone = replaced.SeparateMicrophone });
             }
             else
             {
@@ -110,16 +106,6 @@ sealed class EditorForm : Form
         {
             exporting = false;
         }
-    }
-
-    async Task<ClipInfo> ProbeAsync()
-    {
-        var (_, output) = await FfmpegProcess.RunAsync(ffmpeg, $"-hide_banner -nostdin -i \"{clipPath}\"", TimeSpan.FromSeconds(10));
-        var fps = Regex.Match(output, @"Video:.*?([\d.]+) fps");
-        return new ClipInfo(
-            output.Contains("Audio:"),
-            output.Contains("Video: hevc") ? VideoCodec.Hevc : VideoCodec.H264,
-            fps.Success && double.TryParse(fps.Groups[1].Value, CultureInfo.InvariantCulture, out var value) ? value : 60);
     }
 
     void Post(object message)

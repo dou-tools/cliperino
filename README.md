@@ -40,6 +40,7 @@ Produces `publish\Cliperino.exe`: a single executable of about 50 MB that includ
 Opens by clicking the "Clip saved" notification or with **Edit clip…**, in the tray or at the bottom left of Settings.
 
 - **Trim:** with the timeline handles or with **Start here / End here** (keys **I** / **O**). **P** plays only the selected range and the arrow keys step frame by frame (**Shift** + arrow jumps 1 s).
+- **Remove microphone:** keeps the rest of the sound and takes your voice out. Only shows up on clips saved with the microphone on.
 - **Remove audio:** leaves the clip without an audio track.
 - **Exact cut:** re-encodes the video with the GPU (or x264) to cut on the chosen frame. Without this option the cut is instant but lands on the previous keyframe, up to 1 s earlier.
 - **Save:** by default creates `<clip>_edited.mp4` next to the original; with **Replace the original** it overwrites it.
@@ -50,7 +51,7 @@ Opens by clicking the "Clip saved" notification or with **Edit clip…**, in the
 - **System:**
   - *Everything playing on the PC* (loopback of the default device)
   - *Just the game*: per-process capture; requires Windows 11 and only applies in game mode. If it's not available, it falls back to the desktop.
-- **Microphone:** optional; it's mixed in when the clip is saved.
+- **Microphone:** optional. The clip keeps three tracks: the mix first (the one players and Discord use), then the system and the microphone on their own, to edit them separately in DaVinci Resolve or Premiere. If your editor plays all three at once, mute the first one.
 
 ## Structure
 ```text
@@ -69,7 +70,7 @@ cliperino/
 - **Video:** ffmpeg records 2 s MPEG-TS segments to `%LOCALAPPDATA%\Cliperino\buffer`. Cliperino deletes the ones that fall outside the replay window.
 - **Audio:** the audio (from the desktop or the game) and the optional microphone are kept in circular buffers in RAM, aligned with the system clock.
 - **Sync:** when saving, the audio is aligned with the video timestamps (PTS). That way it stays in sync even when there are gaps, for example while the game is minimized.
-- **Saving:** the segments are joined without re-encoding, the audio is encoded to AAC (mixing in the microphone if it's on) and the `.mp4` is written.
+- **Saving:** the segments are joined without re-encoding, the audio is encoded to AAC (with the microphone, the mix plus a separate track for each source) and the `.mp4` is written.
 - The ffmpeg processes are tied to a Job Object, so if Cliperino closes or crashes, ffmpeg closes with it.
 
 ## Limitations

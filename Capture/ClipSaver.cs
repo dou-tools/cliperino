@@ -61,7 +61,13 @@ public static class ClipSaver
             foreach (var wav in wavs) args.Append($"-i \"{wav}\" ");
             args.Append($"-map 0:v -c:v copy {Mp4Tag(codec)}");
             if (wavs.Count == 1) args.Append("-map 1:a ");
-            if (wavs.Count == 2) args.Append("-filter_complex \"[1:a][2:a]amix=inputs=2:duration=longest:normalize=0[a]\" -map \"[a]\" ");
+            if (wavs.Count == 2)
+            {
+                args.Append("-filter_complex \"[1:a][2:a]amix=inputs=2:duration=longest:normalize=0[a]\" -map \"[a]\" -map 1:a -map 2:a ");
+                string[] names = [T("Sistema y micrófono", "System and microphone"), T("Sistema", "System"), T("Micrófono", "Microphone")];
+                for (int i = 0; i < names.Length; i++)
+                    args.Append($"-metadata:s:a:{i} title=\"{names[i]}\" -metadata:s:a:{i} handler_name=\"{names[i]}\" -disposition:a:{i} {(i == 0 ? "default" : "0")} ");
+            }
             if (wavs.Count > 0) args.Append("-c:a aac -b:a 192k -ac 2 -shortest ");
             args.Append($"-movflags +faststart \"{output}\"");
 

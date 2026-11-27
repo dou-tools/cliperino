@@ -40,6 +40,7 @@ Genera `publish\Cliperino.exe`: un único ejecutable de unos 50 MB que incluye e
 Se abre haciendo clic en la notificación "Clip guardado" o con **Editar clip…**, en la bandeja o abajo a la izquierda de los Ajustes.
 
 - **Recortar:** con las manijas de la línea de tiempo o con **Inicio aquí / Fin aquí** (teclas **I** / **O**). **P** reproduce solo el tramo elegido y las flechas avanzan cuadro por cuadro (**Shift** + flecha avanza 1 s).
+- **Quitar micrófono:** deja el resto del sonido y saca tu voz. Solo aparece en los clips guardados con el micrófono activado.
 - **Quitar audio:** deja el clip sin pista de audio.
 - **Corte exacto:** recodifica el video con la GPU (o x264) para cortar en el cuadro elegido. Sin esta opción el corte es instantáneo pero cae en el keyframe anterior, hasta 1 s antes.
 - **Guardar:** por defecto crea `<clip>_editado.mp4` al lado del original; con **Reemplazar el original** lo sobrescribe.
@@ -50,7 +51,7 @@ Se abre haciendo clic en la notificación "Clip guardado" o con **Editar clip…
 - **Sistema:**
   - *Todo el escritorio* (loopback del dispositivo predeterminado)
   - *Solo el juego*: captura por proceso; requiere Windows 11 y sólo aplica en modo juego. Si no está disponible, usa el escritorio.
-- **Micrófono:** opcional; se mezcla al guardar el clip.
+- **Micrófono:** opcional. El clip queda con tres pistas: primero la mezcla (la que usan los reproductores y Discord) y después el sistema y el micrófono por separado, para editarlos aparte en DaVinci Resolve o Premiere. Si tu editor reproduce las tres juntas, silenciá la primera.
 
 ## Estructura
 ```text
@@ -69,7 +70,7 @@ cliperino/
 - **Video:** ffmpeg graba segmentos MPEG-TS de 2 s en `%LOCALAPPDATA%\Cliperino\buffer`. Cliperino borra los que quedan fuera de la ventana de replay.
 - **Audio:** el audio (del escritorio o del juego) y el micrófono opcional se guardan en buffers circulares en RAM, alineados con el reloj del sistema.
 - **Sincronización:** al guardar, el audio se alinea con los timestamps (PTS) del video. Así sigue sincronizado aunque haya huecos, por ejemplo con el juego minimizado.
-- **Guardado:** se concatenan los segmentos sin re-codificar, se codifica el audio a AAC (mezclando el micrófono si está activado) y se escribe el `.mp4`.
+- **Guardado:** se concatenan los segmentos sin re-codificar, se codifica el audio a AAC (con micrófono, la mezcla y una pista aparte para cada fuente) y se escribe el `.mp4`.
 - Los procesos ffmpeg están atados a un Job Object, así que si Cliperino se cierra o se cuelga, ffmpeg se cierra con él.
 
 ## Limitaciones

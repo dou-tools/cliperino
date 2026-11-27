@@ -5,6 +5,7 @@
 <style>
   :root { color-scheme: dark; --bg: #141414; --panel: #1f1f1f; --line: #333; --text: #e8e8e8; --muted: #9a9a9a; --accent: #e5484d; --selection: rgba(229, 72, 77, .30); }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html, body { height: 100%; }
   body { margin: 0; background: var(--bg); color: var(--text); font: 14px "Segoe UI", system-ui, sans-serif; display: flex; flex-direction: column; }
   video { flex: 1; min-height: 0; width: 100%; background: #000; outline: none; }
@@ -42,10 +43,13 @@
     <button id="markEnd" title="Tecla O">Fin aquí</button>
     <button id="playRange" title="Tecla P">Reproducir recorte</button>
     <span class="times" id="times"></span>
-    <span class="spacer"></span>
+  </div>
+  <div class="row">
+    <label id="removeMicLabel" title="Saca tu voz y deja el resto del sonido" hidden><input type="checkbox" id="removeMic"> <span id="removeMicText">Quitar micrófono</span></label>
     <label id="removeAudioLabel"><input type="checkbox" id="removeAudio"> <span id="removeAudioText">Quitar audio</span></label>
     <label id="exactLabel" title="Corta justo en el cuadro elegido, pero tarda un poco más. Sin esto es instantáneo, aunque puede empezar hasta 1 s antes."><input type="checkbox" id="exact" checked> <span id="exactText">Corte exacto</span></label>
     <label><input type="checkbox" id="replace"> <span id="replaceText">Reemplazar el original</span></label>
+    <span class="spacer"></span>
     <button class="primary" id="save">Guardar</button>
   </div>
   <div class="row">
@@ -65,6 +69,8 @@
     markStart: { text: "Start here", title: "Key I" },
     markEnd: { text: "End here", title: "Key O" },
     playRange: { text: "Play trim", title: "Key P" },
+    removeMicLabel: { title: "Takes your voice out and keeps the rest of the sound" },
+    removeMicText: { text: "Remove microphone" },
     removeAudioText: { text: "Remove audio" },
     exactLabel: { title: "Cuts right on the chosen frame, but takes a bit longer. Without it the cut is instant, but it can start up to 1 s earlier." },
     exactText: { text: "Exact cut" },
@@ -180,7 +186,20 @@
     duration = video.duration;
     start = 0;
     end = duration;
+    previewAudio();
   });
+
+  function previewAudio() {
+    video.muted = $("removeAudio").checked;
+    $("removeMic").disabled = $("removeAudio").checked;
+    const tracks = video.audioTracks;
+    if (!tracks || tracks.length < 3) return;
+    const wanted = $("removeMic").checked ? 1 : 0;
+    for (let i = 0; i < tracks.length; i++) tracks[i].enabled = i === wanted;
+  }
+
+  $("removeAudio").onchange = previewAudio;
+  $("removeMic").onchange = previewAudio;
 
   function setStatus(text, isError) {
     $("status").textContent = text || "";
@@ -191,11 +210,14 @@
     $("save").disabled = busy;
   }
 
-  function setAudioAvailable(hasAudio) {
+  function setAudioAvailable(hasAudio, separateMicrophone) {
     $("removeAudio").disabled = !hasAudio;
     $("removeAudio").checked = !hasAudio;
     $("removeAudioLabel").className = hasAudio ? "" : "disabled";
     $("removeAudioLabel").title = hasAudio ? "" : t("Este clip no tiene audio", "This clip has no audio");
+    $("removeMicLabel").hidden = !separateMicrophone;
+    $("removeMic").checked = false;
+    previewAudio();
   }
 
   function load(url) {
@@ -219,6 +241,7 @@
       start,
       end,
       removeAudio: $("removeAudio").checked,
+      removeMicrophone: $("removeMic").checked,
       exact: $("exact").checked,
       replace
     });
@@ -230,13 +253,13 @@
     const message = event.data;
     if (message.type === "load") {
       if (message.fps > 0) frame = 1 / message.fps;
-      setAudioAvailable(message.hasAudio);
+      setAudioAvailable(message.hasAudio, message.separateMicrophone);
       load(message.url);
       return;
     }
     setBusy(false);
     setStatus(message.text, message.type === "error");
-    if (message.hasAudio !== undefined && message.hasAudio !== null) setAudioAvailable(message.hasAudio);
+    if (message.hasAudio !== undefined && message.hasAudio !== null) setAudioAvailable(message.hasAudio, message.separateMicrophone);
     if (message.reload) load(message.url);
   });
 
