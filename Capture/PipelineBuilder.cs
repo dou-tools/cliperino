@@ -122,6 +122,18 @@ public static class PipelineBuilder
         };
     }
 
+    public static string SizedEncoderArgs(string? pipelineId, int bitrateKbps)
+    {
+        var rate = $"-b:v {bitrateKbps}k -maxrate {bitrateKbps}k -bufsize {bitrateKbps * 2}k";
+        return pipelineId?.Split('-')[^1] switch
+        {
+            "nvenc" => $"-c:v h264_nvenc -preset p6 -rc cbr {rate}",
+            "amf" => $"-c:v h264_amf -quality quality -rc cbr {rate}",
+            "qsv" => $"-c:v h264_qsv -preset medium {rate}",
+            _ => $"-c:v libx264 -preset medium -b:v {bitrateKbps}k -maxrate {bitrateKbps * 3 / 2}k -bufsize {bitrateKbps * 2}k",
+        };
+    }
+
     public static string Describe(string id, VideoCodec codec, MonitorInfo? monitor, GpuSnapshot gpus)
     {
         var parts = id.Split('-');

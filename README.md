@@ -43,6 +43,7 @@ Opens by clicking the "Clip saved" notification or with **Edit clip…**, in the
 - **Remove microphone:** keeps the rest of the sound and takes your voice out. Only shows up on clips saved with the microphone on.
 - **Remove audio:** leaves the clip without an audio track.
 - **Exact cut:** re-encodes the video with the GPU (or x264) to cut on the chosen frame. Without this option the cut is instant but lands on the previous keyframe, up to 1 s earlier.
+- **Size:** compresses the trim to fit in 10 MB (Discord) or 50 MB (Discord Nitro Basic). It uses H.264 and lowers the resolution and FPS only when needed, and saves it as `<clip>_10MB.mp4`.
 - **Save:** by default creates `<clip>_edited.mp4` next to the original; with **Replace the original** it overwrites it.
 - **Requirement:** uses Microsoft Edge WebView2, which already comes installed on Windows 10 and 11.
 

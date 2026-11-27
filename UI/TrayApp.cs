@@ -468,7 +468,9 @@ sealed class TrayApp : ApplicationContext
     void OpenEditor(string clip)
     {
         if (ffmpeg == null || !File.Exists(clip)) return;
-        new EditorForm(ffmpeg, clip, codec => PipelineBuilder.FileEncoderArgs(settings.CachedPipelineId, codec, settings.VideoBitrate(pipeline?.Monitor?.Bounds.Size, codec))).Show();
+        new EditorForm(ffmpeg, clip,
+            codec => PipelineBuilder.FileEncoderArgs(settings.CachedPipelineId, codec, settings.VideoBitrate(pipeline?.Monitor?.Bounds.Size, codec)),
+            kbps => PipelineBuilder.SizedEncoderArgs(settings.CachedPipelineId, kbps)).Show();
     }
 
     PreviewSource PreviewFor(CaptureChoice choice)

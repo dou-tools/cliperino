@@ -43,6 +43,7 @@ Se abre haciendo clic en la notificación "Clip guardado" o con **Editar clip…
 - **Quitar micrófono:** deja el resto del sonido y saca tu voz. Solo aparece en los clips guardados con el micrófono activado.
 - **Quitar audio:** deja el clip sin pista de audio.
 - **Corte exacto:** recodifica el video con la GPU (o x264) para cortar en el cuadro elegido. Sin esta opción el corte es instantáneo pero cae en el keyframe anterior, hasta 1 s antes.
+- **Tamaño:** comprime el recorte para que entre en 10 MB (Discord) o 50 MB (Discord Nitro Basic). Usa H.264 y baja la resolución y los FPS solo si hace falta, y lo guarda como `<clip>_10MB.mp4`.
 - **Guardar:** por defecto crea `<clip>_editado.mp4` al lado del original; con **Reemplazar el original** lo sobrescribe.
 - **Requisito:** usa Microsoft Edge WebView2, que ya viene instalado en Windows 10 y 11.
 

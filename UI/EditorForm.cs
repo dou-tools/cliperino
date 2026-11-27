@@ -16,20 +16,22 @@ sealed class EditorForm : Form
     static readonly Color Background = Color.FromArgb(20, 20, 20);
     static readonly JsonSerializerOptions Json = new() { PropertyNameCaseInsensitive = true };
 
-    sealed record EditorMessage(string Action, double Start, double End, bool RemoveAudio, bool RemoveMicrophone, bool Exact, bool Replace);
+    sealed record EditorMessage(string Action, double Start, double End, bool RemoveAudio, bool RemoveMicrophone, bool Exact, bool Replace, int? MaxMegabytes);
 
     readonly WebView2 view = new() { Dock = DockStyle.Fill, DefaultBackgroundColor = Background };
     readonly string ffmpeg;
     readonly string clipPath;
     readonly Func<VideoCodec, string> exactEncoderArgs;
+    readonly Func<int, string> sizedEncoderArgs;
     string? lastOutput;
     bool exporting;
 
-    public EditorForm(string ffmpeg, string clipPath, Func<VideoCodec, string> exactEncoderArgs)
+    public EditorForm(string ffmpeg, string clipPath, Func<VideoCodec, string> exactEncoderArgs, Func<int, string> sizedEncoderArgs)
     {
         this.ffmpeg = ffmpeg;
         this.clipPath = clipPath;
         this.exactEncoderArgs = exactEncoderArgs;
+        this.sizedEncoderArgs = sizedEncoderArgs;
         Text = $"Cliperino - {Path.GetFileName(clipPath)}";
         StartPosition = FormStartPosition.CenterScreen;
         AutoScaleMode = AutoScaleMode.Dpi;
@@ -81,20 +83,21 @@ sealed class EditorForm : Form
     {
         if (exporting) return;
         exporting = true;
-        var edit = new ClipEdit(message.Start, message.End, message.RemoveAudio, message.RemoveMicrophone, message.Exact, message.Replace);
+        var edit = new ClipEdit(message.Start, message.End, message.RemoveAudio, message.RemoveMicrophone, message.Exact, message.Replace, message.MaxMegabytes);
         try
         {
             var info = await ClipEditor.ProbeAsync(ffmpeg, clipPath);
-            var output = await Task.Run(() => ClipEditor.ExportAsync(ffmpeg, clipPath, edit, info, exactEncoderArgs(info.Codec)));
+            var output = await Task.Run(() => ClipEditor.ExportAsync(ffmpeg, clipPath, edit, info, exactEncoderArgs(info.Codec), sizedEncoderArgs));
+            var size = edit.MaxMegabytes != null ? $" ({new FileInfo(output).Length / 1_000_000.0:0.0} MB)" : "";
             lastOutput = output;
             if (edit.Replace)
             {
                 var replaced = await ClipEditor.ProbeAsync(ffmpeg, clipPath);
-                Post(new { type = "done", text = T("Listo, se reemplazó el original.", "Done, the original was replaced."), reload = true, url = ClipUrl, hasAudio = replaced.HasAudio, separateMicrophone = replaced.SeparateMicrophone });
+                Post(new { type = "done", text = T($"Listo, se reemplazó el original{size}.", $"Done, the original was replaced{size}."), reload = true, url = ClipUrl, hasAudio = replaced.HasAudio, separateMicrophone = replaced.SeparateMicrophone });
             }
             else
             {
-                Post(new { type = "done", text = T($"Listo, se guardó como {Path.GetFileName(output)}", $"Done, saved as {Path.GetFileName(output)}"), reload = false });
+                Post(new { type = "done", text = T($"Listo, se guardó como {Path.GetFileName(output)}{size}", $"Done, saved as {Path.GetFileName(output)}{size}"), reload = false });
             }
         }
         catch (Exception ex)

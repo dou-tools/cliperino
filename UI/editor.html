@@ -20,6 +20,7 @@
   button { background: #2c2c2c; color: var(--text); border: 1px solid #3c3c3c; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
   button:hover:not(:disabled) { background: #363636; }
   button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  select { background: #2c2c2c; color: var(--text); border: 1px solid #3c3c3c; border-radius: 6px; padding: 5px 8px; font: inherit; cursor: pointer; }
   button:disabled { opacity: .5; cursor: default; }
   label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
   label.disabled { color: var(--muted); cursor: default; }
@@ -49,6 +50,13 @@
     <label id="removeAudioLabel"><input type="checkbox" id="removeAudio"> <span id="removeAudioText">Quitar audio</span></label>
     <label id="exactLabel" title="Corta justo en el cuadro elegido, pero tarda un poco más. Sin esto es instantáneo, aunque puede empezar hasta 1 s antes."><input type="checkbox" id="exact" checked> <span id="exactText">Corte exacto</span></label>
     <label><input type="checkbox" id="replace"> <span id="replaceText">Reemplazar el original</span></label>
+    <label id="sizeLabel" title="Baja la calidad lo justo para que entre en ese tamaño"><span id="sizeText">Tamaño:</span>
+      <select id="size">
+        <option value="" id="sizeOriginal">Sin comprimir</option>
+        <option value="10" id="size10">Hasta 10 MB (Discord)</option>
+        <option value="50" id="size50">Hasta 50 MB (Discord Nitro Basic)</option>
+      </select>
+    </label>
     <span class="spacer"></span>
     <button class="primary" id="save">Guardar</button>
   </div>
@@ -75,6 +83,11 @@
     exactLabel: { title: "Cuts right on the chosen frame, but takes a bit longer. Without it the cut is instant, but it can start up to 1 s earlier." },
     exactText: { text: "Exact cut" },
     replaceText: { text: "Replace the original" },
+    sizeLabel: { title: "Lowers the quality just enough to fit that size" },
+    sizeText: { text: "Size:" },
+    sizeOriginal: { text: "Don't compress" },
+    size10: { text: "Up to 10 MB (Discord)" },
+    size50: { text: "Up to 50 MB (Discord Nitro Basic)" },
     save: { text: "Save" },
     keysHint: { text: "Space: play/pause · ←/→: one frame · Shift+←/→: 1 s" },
     reveal: { text: "Show in folder" },
@@ -168,7 +181,7 @@
   $("playRange").onclick = playRange;
 
   document.addEventListener("keydown", event => {
-    if (event.target.tagName === "INPUT" || !duration) return;
+    if (event.target.tagName === "INPUT" || event.target.tagName === "SELECT" || !duration) return;
     const step = event.shiftKey ? 1 : frame;
     switch (event.key.toLowerCase()) {
       case "i": setStart(video.currentTime); break;
@@ -200,6 +213,13 @@
 
   $("removeAudio").onchange = previewAudio;
   $("removeMic").onchange = previewAudio;
+
+  $("size").onchange = () => {
+    const compress = $("size").value !== "";
+    if (compress) $("exact").checked = true;
+    $("exact").disabled = compress;
+    $("exactLabel").className = compress ? "disabled" : "";
+  };
 
   function setStatus(text, isError) {
     $("status").textContent = text || "";
@@ -234,8 +254,10 @@
   $("save").onclick = () => {
     const replace = $("replace").checked;
     if (replace) release();
+    const maxMegabytes = Number($("size").value) || null;
     setBusy(true);
-    setStatus($("exact").checked ? t("Guardando, puede tardar un poco…", "Saving, this can take a moment…") : t("Guardando…", "Saving…"));
+    setStatus(maxMegabytes ? t("Comprimiendo, puede tardar un poco…", "Compressing, this can take a moment…")
+      : $("exact").checked ? t("Guardando, puede tardar un poco…", "Saving, this can take a moment…") : t("Guardando…", "Saving…"));
     chrome.webview.postMessage({
       action: "export",
       start,
@@ -243,7 +265,8 @@
       removeAudio: $("removeAudio").checked,
       removeMicrophone: $("removeMic").checked,
       exact: $("exact").checked,
-      replace
+      replace,
+      maxMegabytes
     });
   };
 
